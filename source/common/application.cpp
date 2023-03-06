@@ -29,7 +29,7 @@ std::string default_screenshot_filepath() {
     auto time = std::time(nullptr);
     
     struct tm localtime;
-    localtime_r(&time, &localtime);
+    localtime_s(&localtime,&time);
     stream << "screenshots/screenshot-" << std::put_time(&localtime, "%Y-%m-%d-%H-%M-%S") << ".png";
     return stream.str();
 }
@@ -305,7 +305,7 @@ int our::Application::run(int run_for_frames) {
             } else break;
         }
 
-        int id = 9202141;
+        int id = 9203998;
         float r = ((id / 1) % 16) / 16.0;
         float g = ((id / 16) % 16) / 16.0;
         float b = ((id / 256) % 16) / 16.0;
