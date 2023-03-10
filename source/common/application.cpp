@@ -20,14 +20,12 @@
 #if !defined(NDEBUG)
 // If NDEBUG (no debug) is not defined, enable OpenGL debug messages
 #define ENABLE_OPENGL_DEBUG_MESSAGES
-#endif&localtime
-
+#endif
 #include "texture/screenshot.hpp"
 
 std::string default_screenshot_filepath() {
     std::stringstream stream;
     auto time = std::time(nullptr);
-    
     struct tm localtime;
     localtime_r(&time,&localtime);
     stream << "screenshots/screenshot-" << std::put_time(&localtime, "%Y-%m-%d-%H-%M-%S") << ".png";
@@ -304,7 +302,6 @@ int our::Application::run(int run_for_frames) {
                 requested_screenshots.pop();
             } else break;
         }
-
         int id = 9202611;
         float r = ((id / 1) % 16) / 16.0;
         float g = ((id / 16) % 16) / 16.0;
