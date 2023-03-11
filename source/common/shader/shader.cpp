@@ -20,6 +20,14 @@ bool our::ShaderProgram::attach(const std::string &filename, GLenum type) const 
     const char* sourceCStr = sourceString.c_str();
     file.close();
 
+    GLuint shader = glCreateShader(type);
+    glShaderSource(shader, 1, &sourceCStr, nullptr);
+    glCompileShader(shader);
+    if(checkForShaderCompilationErrors(shader) != ""){
+        std::cerr << checkForShaderCompilationErrors(shader) << std::endl;
+        return false;
+    }
+
     //TODO: Complete this function
     //Note: The function "checkForShaderCompilationErrors" checks if there is
     // an error in the given shader. You should use it to check if there is a
@@ -38,6 +46,12 @@ bool our::ShaderProgram::link() const {
     // an error in the given program. You should use it to check if there is a
     // linking error and print it so that you can know what is wrong with the
     // program. The returned string will be empty if there is no errors.
+    glLinkProgram(program);
+
+    if(checkForLinkingErrors(program) != ""){
+        std::cerr << checkForShaderCompilationErrors(program) << std::endl;
+        return false;
+    }
 
     return true;
 }
