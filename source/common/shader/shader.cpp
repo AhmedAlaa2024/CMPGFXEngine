@@ -23,10 +23,13 @@ bool our::ShaderProgram::attach(const std::string &filename, GLenum type) const 
     GLuint shader = glCreateShader(type);
     glShaderSource(shader, 1, &sourceCStr, nullptr);
     glCompileShader(shader);
-    if(checkForShaderCompilationErrors(shader) != ""){
-        std::cerr << checkForShaderCompilationErrors(shader) << std::endl;
+    std::string error = checkForShaderCompilationErrors(shader);
+    if(error != ""){
+        std::cerr << "SHADER ATTACH ERROR" << std::endl;
+        std::cerr << error << std::endl;
         return false;
     }
+    glAttachShader(program,shader);
 
     //TODO: Complete this function
     //Note: The function "checkForShaderCompilationErrors" checks if there is
@@ -48,8 +51,10 @@ bool our::ShaderProgram::link() const {
     // program. The returned string will be empty if there is no errors.
     glLinkProgram(program);
 
-    if(checkForLinkingErrors(program) != ""){
-        std::cerr << checkForShaderCompilationErrors(program) << std::endl;
+    std::string error = checkForLinkingErrors(program);
+    if(error != ""){
+        std::cerr << "SHADER LINK ERROR" << std::endl;
+        std::cerr << error << std::endl;
         return false;
     }
 
