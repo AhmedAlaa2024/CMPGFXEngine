@@ -302,13 +302,13 @@ int our::Application::run(int run_for_frames) {
                 requested_screenshots.pop();
             } else break;
         }
-        int id = 9202611;
-        float r = ((id / 1) % 16) / 16.0;
-        float g = ((id / 16) % 16) / 16.0;
-        float b = ((id / 256) % 16) / 16.0;
+        // int id = 9202611;
+        // float r = ((id / 1) % 16) / 16.0;
+        // float g = ((id / 16) % 16) / 16.0;
+        // float b = ((id / 256) % 16) / 16.0;
 
-        glClearColor(r, g, b, 1.0);
-        glClear(GL_COLOR_BUFFER_BIT);
+        // glClearColor(r, g, b, 1.0);
+        // glClear(GL_COLOR_BUFFER_BIT);
 
         // Swap the frame buffers
         glfwSwapBuffers(window);
