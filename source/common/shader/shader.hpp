@@ -51,7 +51,6 @@ namespace our
             GLuint uniform_loc = getUniformLocation(uniform);
             if (uniform_loc != -1)
                 std::cout << "Error in finding loction of Uniform" << std::endl;
-            else
                 glUniform1f(uniform_loc, value);
         }
 
@@ -61,7 +60,6 @@ namespace our
             GLuint uniform_loc = getUniformLocation(uniform);
             if (uniform_loc != -1)
                 std::cout << "Error in finding loction of Uniform" << std::endl;
-            else
                 glUniform1ui(uniform_loc, value);
         }
 
@@ -71,7 +69,6 @@ namespace our
             GLuint uniform_loc = getUniformLocation(uniform);
             if (uniform_loc != -1)
                 std::cout << "Error in finding loction of Uniform" << std::endl;
-            else
                 glUniform1i(uniform_loc, value);
         }
 
@@ -81,7 +78,6 @@ namespace our
             GLuint uniform_loc = getUniformLocation(uniform);
             if (uniform_loc != -1)
                 std::cout << "Error in finding loction of Uniform" << std::endl;
-            else
                 glUniform2fv(uniform_loc,
                              1,
                              &value[0]);
@@ -93,7 +89,6 @@ namespace our
             GLuint uniform_loc = getUniformLocation(uniform);
             if (uniform_loc != -1)
                 std::cout << "Error in finding loction of Uniform" << std::endl;
-            else
                 glUniform3fv(uniform_loc,
                              1,
                              &value[0]);
@@ -105,7 +100,6 @@ namespace our
             GLuint uniform_loc = getUniformLocation(uniform);
             if (uniform_loc != -1)
                 std::cout << "Error in finding loction of Uniform" << std::endl;
-            else
                 glUniform4fv(uniform_loc,
                              1,
                              &value[0]);
@@ -117,8 +111,7 @@ namespace our
             GLuint uniform_loc = getUniformLocation(uniform);
             if (uniform_loc != -1)
                 std::cout << "Error in finding loction of Uniform" << std::endl;
-            else
-                glUniformMatrix4fv(uniform_loc, 1, GL_FALSE,
+                glUniformMatrix4fv(uniform_loc, 1, false,
                                    &matrix[0][0]);
         }
 
@@ -126,9 +119,8 @@ namespace our
         ShaderProgram &operator=(const ShaderProgram &) = delete;
         ShaderProgram (const ShaderProgram &) = delete;
         // Question 2: copy constructor ()==>default
-        // ShaderProgram() = default;
         // Question: Why do we delete the copy constructor and assignment operator?
-        // to prevent 
+        // to prevent deleting program from one and used by the second
     };
 
 }
