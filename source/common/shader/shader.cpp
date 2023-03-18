@@ -20,17 +20,6 @@ bool our::ShaderProgram::attach(const std::string &filename, GLenum type) const 
     const char* sourceCStr = sourceString.c_str();
     file.close();
 
-    GLuint shader = glCreateShader(type);
-    glShaderSource(shader, 1, &sourceCStr, nullptr);
-    glCompileShader(shader);
-    std::string error = checkForShaderCompilationErrors(shader);
-    if(error != ""){
-        std::cerr << "SHADER ATTACH ERROR" << std::endl;
-        std::cerr << error << std::endl;
-        return false;
-    }
-    glAttachShader(program,shader);
-
     //TODO: Complete this function
     //Note: The function "checkForShaderCompilationErrors" checks if there is
     // an error in the given shader. You should use it to check if there is a
