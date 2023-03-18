@@ -45,16 +45,12 @@ namespace our {
             // enable sending data to attribute location
             // use vertex array to tell OpenGL where to get the data for attributes
             // attribute location, element size(3 for xyz, 4 for rgba), type, normalized or not, stride/jump size after reading 1 element, start 
+            glGenVertexArrays(1, &VAO);
+            glBindVertexArray(VAO);
+
             glGenBuffers(1, &VBO);
             glBindBuffer(GL_ARRAY_BUFFER, VBO);
             glBufferData(GL_ARRAY_BUFFER, (vertices.size())*sizeof(Vertex), vertices.data(), GL_STATIC_DRAW);
-
-            glGenBuffers(1, &EBO);
-            glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-            glBufferData(GL_ELEMENT_ARRAY_BUFFER, (elements.size())*sizeof(unsigned int), vertices.data(), GL_STATIC_DRAW);
-
-            glGenVertexArrays(1, &VAO);
-            glBindVertexArray(VAO);
 
             glEnableVertexAttribArray(ATTRIB_LOC_POSITION);
             glVertexAttribPointer(ATTRIB_LOC_POSITION, 3, GL_FLOAT, false, sizeof(Vertex), 0);
@@ -67,12 +63,22 @@ namespace our {
                         
             glEnableVertexAttribArray(ATTRIB_LOC_NORMAL);
             glVertexAttribPointer(ATTRIB_LOC_NORMAL, 3, GL_FLOAT, false, sizeof(Vertex), (void*)offsetof(Vertex, normal));
+
+            glGenBuffers(1, &EBO);
+            glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+            glBufferData(GL_ELEMENT_ARRAY_BUFFER, (elements.size())*sizeof(unsigned int), elements.data(), GL_STATIC_DRAW);
+
+            glBindVertexArray(0);
+
         }
 
         // this function should render the mesh
         void draw() 
         {
             //TODO: (Req 2) Write this function
+            glBindVertexArray(this->VAO);
+            
+            glDrawElements(GL_TRIANGLES, this->elementCount, GL_UNSIGNED_INT, (void*)0);
         }
 
         // this function should delete the vertex & element buffers and the vertex array object
