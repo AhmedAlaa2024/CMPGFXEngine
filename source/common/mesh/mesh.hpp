@@ -2,6 +2,7 @@
 
 #include <glad/gl.h>
 #include "vertex.hpp"
+#include <iostream>
 
 namespace our {
 
@@ -77,6 +78,7 @@ namespace our {
         {
             //TODO: (Req 2) Write this function
             glBindVertexArray(this->VAO);
+            std::cout << "Drawing " << this->VAO << " with " << this->elementCount << std::endl;
             
             glDrawElements(GL_TRIANGLES, this->elementCount, GL_UNSIGNED_INT, (void*)0);
         }

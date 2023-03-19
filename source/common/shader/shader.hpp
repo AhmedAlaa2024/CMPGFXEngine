@@ -49,7 +49,7 @@ namespace our
         {
             // TODO: (Req 1) Send the given float value to the given uniform
             GLuint uniform_loc = getUniformLocation(uniform);
-            if (uniform_loc != -1)
+            if (uniform_loc == -1)
                 std::cout << "Error in finding loction of <float> Uniform [" << uniform.c_str() << "]" << std::endl;
             glUniform1f(uniform_loc, value);
         }
@@ -58,7 +58,7 @@ namespace our
         {
             // TODO: (Req 1) Send the given unsigned integer value to the given uniform
             GLuint uniform_loc = getUniformLocation(uniform);
-            if (uniform_loc != -1)
+            if (uniform_loc == -1)
                 std::cout << "Error in finding loction of <unsigned int> Uniform [" << uniform.c_str() << "]" << std::endl;
             glUniform1ui(uniform_loc, value);
         }
@@ -67,7 +67,7 @@ namespace our
         {
             // TODO: (Req 1) Send the given integer value to the given uniform
             GLuint uniform_loc = getUniformLocation(uniform);
-            if (uniform_loc != -1)
+            if (uniform_loc == -1)
                 std::cout << "Error in finding loction of <integer> Uniform [" << uniform.c_str() << "]" << std::endl;
             glUniform1i(uniform_loc, value);
         }
@@ -76,7 +76,7 @@ namespace our
         {
             // TODO: (Req 1) Send the given 2D vector value to the given uniform
             GLuint uniform_loc = getUniformLocation(uniform);
-            if (uniform_loc != -1)
+            if (uniform_loc == -1)
                 std::cout << "Error in finding loction of <vec2> Uniform [" << uniform.c_str() << "]" << std::endl;
             glUniform2fv(uniform_loc, 1, &value[0]);
         }
@@ -85,7 +85,7 @@ namespace our
         {
             // TODO: (Req 1) Send the given 3D vector value to the given uniform
             GLuint uniform_loc = getUniformLocation(uniform);
-            if (uniform_loc != -1)
+            if (uniform_loc == -1)
                 std::cout << "Error in finding loction of <vec3> Uniform [" << uniform.c_str() << "]" << std::endl;
             glUniform3fv(uniform_loc, 1, &value[0]);
         }
@@ -94,7 +94,7 @@ namespace our
         {
             // TODO: (Req 1) Send the given 4D vector value to the given uniform
             GLuint uniform_loc = getUniformLocation(uniform);
-            if (uniform_loc != -1)
+            if (uniform_loc == -1)
                 std::cout << "Error in finding loction of <vec4> Uniform [" << uniform.c_str() << "]" << std::endl;
             glUniform4fv(uniform_loc, 1, &value[0]);
         }
@@ -103,7 +103,7 @@ namespace our
         {
             // TODO: (Req 1) Send the given matrix 4x4 value to the given uniform
             GLuint uniform_loc = getUniformLocation(uniform);
-            if (uniform_loc != -1)
+            if (uniform_loc == -1)
                 std::cout << "Error in finding loction of <mat4> Uniform [" << uniform.c_str() << "]" << std::endl;
             glUniformMatrix4fv(uniform_loc, 1, false, &matrix[0][0]);
         }
