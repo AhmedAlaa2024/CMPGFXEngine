@@ -19,7 +19,7 @@ namespace our {
 
         glm::mat4 R = glm::yawPitchRoll(this->rotation.y, this->rotation.x, this->rotation.z);
 
-        glm::mat4 T = glm::translate(glm::mat4(), this->position);
+        glm::mat4 T = glm::translate(glm::mat4(1.0f), this->position);
 
         glm::mat4 transform = T * R * S;
 
