@@ -28,7 +28,7 @@ namespace our
             PipelineState skyPipelineState{};
             skyPipelineState.depthTesting.enabled = true;
             skyPipelineState.depthTesting.function = GL_LEQUAL;
-            // skyPipelineState.blending.enabled = true;
+            skyPipelineState.blending.enabled = true;
             skyPipelineState.faceCulling.enabled = true;
             skyPipelineState.faceCulling.culledFace = GL_FRONT;
             skyPipelineState.setup();
@@ -156,7 +156,7 @@ namespace our
 
         // TODO: (Req 9) Modify the following line such that "cameraForward" contains a vector pointing the camera forward direction
         //  HINT: See how you wrote the CameraComponent::getViewMatrix, it should help you solve this one
-        glm::vec3 cameraForward = camera->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, -1, 1.0f);
+        glm::vec3 cameraForward = camera->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, -1.0f, 1.0f);
         glm::vec3 cameraPosition = glm::inverse(camera->getViewMatrix())[3];
         std::sort(transparentCommands.begin(), transparentCommands.end(), [cameraForward](const RenderCommand &first, const RenderCommand &second)
                   {
@@ -172,8 +172,7 @@ namespace our
         glViewport(0, 0, this->windowSize.x, this->windowSize.y);
 
         // TODO: (Req 9) Set the clear color to black and the clear depth to 1
-        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-        glClearDepth(1.0f);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         // TODO: (Req 9) Set the color mask to true and the depth mask to true (to ensure the glClear will affect the framebuffer)
         glColorMask(GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
@@ -234,6 +233,8 @@ namespace our
         for (const auto &command : transparentCommands)
         {
             // [HELP] I am not sure. Check it with Eng. Yahia!
+            command.material->pipelineState.blending.enabled = true;
+            command.material->pipelineState.depthTesting.enabled = true;
             command.material->setup();
             glUniformMatrix4fv(command.material->shader->getUniformLocation("transform"), 1, GL_FALSE, glm::value_ptr(VP * command.localToWorld));
 
