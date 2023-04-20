@@ -9,21 +9,9 @@ our::Texture2D *our::texture_utils::empty(GLenum format, glm::ivec2 size)
 {
     our::Texture2D *texture = new our::Texture2D();
     // TODO: (Req 11) Finish this function to create an empty texture with the given size and format
-    // GLuint rt_levels = glm::floor(glm::log2(glm::max<float>(size.x, size.y))) + 1; //==================>Question
-    // texture->bind();
-    // glTexStorage2D(GL_TEXTURE_2D, rt_levels, format, size.x, size.y);
-     texture->bind();
-    // Q: What is the difference between glTexImage2D and glTexStorage2D?
-    // A: glTexImage2D allocates memory for the texture and fills it with data
-    //    glTexStorage2D allocates memory for the texture but does not fill it with data
-    //    glTexStorage2D is faster than glTexImage2D
-    //    glTexStorage2D is used when we will fill the texture with data later
-    //    glTexImage2D is used when we want to fill the texture with data right away
-
-    
-
-    glTexImage2D(GL_TEXTURE_2D, 0, format, size.x, size.y, 0, format, GL_UNSIGNED_BYTE, nullptr);
-    glGenerateMipmap(GL_TEXTURE_2D);
+    GLuint rt_levels = glm::floor(glm::log2(glm::max<float>(size.x, size.y))) + 1; //==================>Question
+    texture->bind();
+    glTexStorage2D(GL_TEXTURE_2D, rt_levels, format, size.x, size.y);
     return texture;
 }
 
