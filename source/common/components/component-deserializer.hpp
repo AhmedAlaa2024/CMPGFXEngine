@@ -21,6 +21,7 @@ namespace our {
         } else if (type == MovementComponent::getID()) {
             component = entity->addComponent<MovementComponent>();
         } else if (type == MeshRendererComponent::getID()) {
+            // add component of type MeshRendererComponent to the passed entity
             component = entity->addComponent<MeshRendererComponent>();
         }
         if(component) component->deserialize(data);

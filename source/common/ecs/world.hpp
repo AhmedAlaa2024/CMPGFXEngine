@@ -26,9 +26,13 @@ namespace our {
         Entity* add() {
             //TODO: (Req 8) Create a new entity, set its world member variable to this,
             // and don't forget to insert it in the suitable container.
+            // dynamically allocates memory for a new object of type Entity and returns a pointer to the newly allocated object.
             Entity* new_entity = new Entity();
+            // set its world member variable to this
             new_entity->world = this;
+            // add the new entity to the set of entities
             this->entities.insert(new_entity);
+            // return pointer to the newly added entity
             return new_entity;
         }
 
@@ -41,7 +45,9 @@ namespace our {
         // The elements in the "markedForRemoval" set will be removed and deleted when "deleteMarkedEntities" is called.
         void markForRemoval(Entity* entity){
             //TODO: (Req 8) If the entity is in this world, add it to the "markedForRemoval" set.
+            // first check if the passed entity exist in the set of entities in this world
             if(entities.find(entity) != entities.end())
+                // if found, insert in the set of martforremoval
                 markedForRemoval.insert(entity);
         }
 
@@ -49,20 +55,27 @@ namespace our {
         // Then each of these elements are deleted.
         void deleteMarkedEntities(){
             //TODO: (Req 8) Remove and delete all the entities that have been marked for removal
+            // iterate over all element in the set markedforremoval
             for(auto entity: markedForRemoval){
+                // remove its pointer from entities set
                 entities.erase(entity);
+                // deallocate the memory associated with the object pointed to by the iterator entity.
                 delete entity;
             }
+            // Clear the marked for removal set to remove all elements
             markedForRemoval.clear();
         }
 
         //This deletes all entities in the world
         void clear(){
             //TODO: (Req 8) Delete all the entites and make sure that the containers are empty
+            // Iterate over the set and delete each entity
             for(auto entity: entities){
                 delete entity;
             }
+            // Clear the entity set to remove all elements
             entities.clear();
+            // Clear the marked for removal set to remove all elements
             markedForRemoval.clear();
         }
 
