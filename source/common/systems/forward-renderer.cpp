@@ -249,13 +249,19 @@ namespace our
             this->skyMaterial->setup();
 
             // TODO: (Req 10) Get the camera position
+            // Explaination: gets the camera's position by inverting its view matrix and accessing the fourth column vector
+            // (which corresponds to the camera position in homogeneous coordinates).
             cameraPosition = glm::inverse(camera->getViewMatrix())[3];
 
             // TODO: (Req 10) Create a model matrix for the sky such that it always follows the camera (sky sphere center = camera position)
+            // Explaination: creates a model matrix for the sky such that it always follows the camera's position.
+            // The glm::translate() function creates a translation matrix from the identy to the camera's position.
             glm::mat4 skyModelMatrix = glm::translate(glm::mat4(1.0f), cameraPosition);
 
             // TODO: (Req 10) We want the sky to be drawn behind everything (in NDC space, z=1)
             //  We can acheive the is by multiplying by an extra matrix after the projection but what values should we put in it?
+            // Explaination: creates a matrix that will move the sky behind everything by setting its z-coordinate to 1 in homogeneous coordinates.
+            // This is done by setting the (3,3) element to 0, and the (3,2) element to 1.
             glm::mat4 alwaysBehindTransform = glm::mat4(
                 1.0f, 0.0f, 0.0f, 0.0f,
                 0.0f, 1.0f, 0.0f, 0.0f,
@@ -265,11 +271,14 @@ namespace our
             // TODO: (Req 10) set the "transform" uniform
             glm::mat4 transform = alwaysBehindTransform * camera->getProjectionMatrix(this->windowSize) * camera->getViewMatrix() * skyModelMatrix;
 
+            // sets the transform uniform in the shader to the model-view-projection matrix
+            // (computed as the product of the view-projection matrix and the command's local-to-world matrix)
             glUniformMatrix4fv(this->skyMaterial->shader->getUniformLocation("transform"), 1, GL_FALSE, glm::value_ptr(transform));
 
             // TODO: (Req 10) draw the sky sphere
             this->skySphere->draw();
         }
+
         // TODO: (Req 9) Draw all the transparent commands
         //  Don't forget to set the "transform" uniform to be equal the model-view-projection matrix for each render command
         // Explaination: The following loop draws all of the transparent commands. For each command, it sets up the material using the setup() method,
