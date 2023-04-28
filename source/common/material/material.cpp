@@ -8,7 +8,9 @@ namespace our {
     // This function should setup the pipeline state and set the shader to be used
     void Material::setup() const {
         //TODO: (Req 7) Write this function
+        // setup the pipeline state
         pipelineState.setup();
+        // set the shader to be used
         shader->use();
     }
 
@@ -27,7 +29,9 @@ namespace our {
     // set the "tint" uniform to the value in the member variable tint 
     void TintedMaterial::setup() const {
         //TODO: (Req 7) Write this function
+        // call the setup of its parent (Material class)
         Material::setup();
+        // set the "tint" uniform to the value in the member variable tint set(uniform name, value)
         shader->set("tint",tint);
     }
 
