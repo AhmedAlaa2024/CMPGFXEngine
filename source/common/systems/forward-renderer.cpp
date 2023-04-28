@@ -59,20 +59,21 @@ namespace our
         if (config.contains("postprocess"))
         {
             // TODO: (Req 11) Create a framebuffer
- glGenFramebuffers(1, &postprocessFrameBuffer);
+            glGenFramebuffers(1, &postprocessFrameBuffer);
             glBindFramebuffer(GL_DRAW_FRAMEBUFFER, postprocessFrameBuffer);
 
-           
-           
             // TODO: (Req 11) Create a color and a depth texture and attach them to the framebuffer
             //  Hints: The color format can be (Red, Green, Blue and Alpha components with 8 bits for each channel).
             //  The depth format can be (Depth component with 24 bits).
-                  colorTarget = new our::Texture2D();
+
+            colorTarget = new our::Texture2D();
             colorTarget->bind();
             GLuint rt_levels = (GLuint)glm::floor(glm::log2(glm::max<float>((float)windowSize.x, (float)windowSize.y))) + 1;
+            // we allocate memory for the texture
             glTexStorage2D(GL_TEXTURE_2D, rt_levels, GL_RGBA8, windowSize.x, windowSize.y);
+            // glFramebufferTexture2D attaches a texture to the framebuffer. The texture can be a color or depth texture.
             glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, colorTarget->getOpenGLName(), 0);
-            
+
             depthTarget = new our::Texture2D();
             depthTarget->bind();
             glTexStorage2D(GL_TEXTURE_2D, 1, GL_DEPTH_COMPONENT24, windowSize.x, windowSize.y);
@@ -80,8 +81,8 @@ namespace our
             glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depthTarget->getOpenGLName(), 0);
 
             // TODO: (Req 11) Unbind the framebuffer just to be safe
+            // We need to unbind the framebuffer so that we can render to the default framebuffer.
             glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
-
 
             // Create a vertex array to use for drawing the texture
             glGenVertexArrays(1, &postProcessVertexArray);
@@ -179,8 +180,7 @@ namespace our
                   {
             //TODO: (Req 9) Finish this function
             // HINT: the following return should return true "first" should be drawn before "second".
-            return glm::dot(first.center, cameraForward) < glm::dot(second.center, cameraForward); 
-            });
+            return glm::dot(first.center, cameraForward) < glm::dot(second.center, cameraForward); });
 
         // TODO: (Req 9) Get the camera ViewProjection matrix and store it in VP
         glm::mat4 VP = camera->getProjectionMatrix(this->windowSize) * camera->getViewMatrix();
@@ -197,14 +197,14 @@ namespace our
 
         // If there is a postprocess material, bind the framebuffer
         if (postprocessMaterial)
-            // command.material->setup();
+        // command.material->setup();
         {
             // TODO: (Req 11) bind the framebuffer
-              glBindFramebuffer(GL_DRAW_FRAMEBUFFER, postprocessFrameBuffer);
+            glBindFramebuffer(GL_DRAW_FRAMEBUFFER, postprocessFrameBuffer);
         }
 
         // TODO: (Req 9) Clear the color and depth buffers
-   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         // TODO: (Req 9) Draw all the opaque commands
         //  Don't forget to set the "transform" uniform to be equal the model-view-projection matrix for each render command
@@ -236,7 +236,6 @@ namespace our
                 0.0f, 0.0f, 0.0f, 0.0f,
                 0.0f, 0.0f, 1.0f, 1.0f);
 
-            
             // TODO: (Req 10) set the "transform" uniform
             glm::mat4 transform = alwaysBehindTransform * camera->getProjectionMatrix(this->windowSize) * camera->getViewMatrix() * skyModelMatrix;
 
@@ -262,10 +261,12 @@ namespace our
         if (postprocessMaterial)
         { // TODO: (Req 11) Return to the default framebuffer
             glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
-
             // TODO: (Req 11) Setup the postprocess material and draw the fullscreen triangle
             postprocessMaterial->setup();
             glBindVertexArray(postProcessVertexArray);
-            glDrawArrays(GL_TRIANGLES, GLint(0), 4);  }
+            // Specifies the starting index in the enabled arrays.
+            // Specifies the number of indices to be rendered.
+            glDrawArrays(GL_TRIANGLES, GLint(0), 4);
+        }
     }
 }

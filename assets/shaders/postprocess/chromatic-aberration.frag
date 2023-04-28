@@ -21,8 +21,18 @@ void main(){
     // To get the red channel, we move by amount STRENGTH to the left then sample another pixel from which we take the red channel
     // To get the blue channel, we move by amount STRENGTH to the right then sample another pixel from which we take the blue channel
      vec3 colors;
+     //========================================================================================================================//
+     //          move by amount STRENGTH to the right then sample another pixel from which we take the red channel             //
+     //          we do move the by anmount strength to the left to sample the pixel to the left of the current pixel          //                                                     //
+    //======================================================================================================================//
+
      colors.r=texture(tex,vec2(tex_coord[0]-STRENGTH,tex_coord[1])).r;
+      //read the green channel from the current pixel
      colors.g=texture(tex,tex_coord).g;
+       //========================================================================================================================//
+     //          move by amount STRENGTH to the right then sample another pixel from which we take the blue channel            //
+     //          we do move the by anmount strength to the right to sample the pixel to the right of the current pixel        //                                                     //
+    //======================================================================================================================//
      colors.b=texture(tex,vec2(tex_coord[0]+STRENGTH,tex_coord[1])).b;
      frag_color = vec4(colors,1);
 }
