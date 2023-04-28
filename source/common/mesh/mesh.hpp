@@ -34,16 +34,6 @@ namespace our {
             // For the attribute locations, use the constants defined above: ATTRIB_LOC_POSITION, ATTRIB_LOC_COLOR, etc
 
             elementCount = elements.size();
-
-            // bind EBO to GL_ELEMENT_ARRAY_BUFFER to enable dealing with it in the current context
-            // store vertices data in buffers by passing data, its size, and usage 
-            // usage GL_STATIC_DRAW : We won't change data and will use it in drawing
-            //////////////////////////////////////////////////////////////////////////////
-            /////////////////////////////////////////////////////////////////////////////
-            // enable sending data to attribute location
-            // use vertex array to tell OpenGL where to get the data for attributes
-            // attribute location, element size(3 for xyz, 4 for rgba), type, normalized or not, stride/jump size after reading 1 element, start 
-
             // generates 1 vertex array, give it pointer to VAO to put name of generated vertex array in it.
             // Syntax: void glGenVertexArrays(GLsizei n, GLuint* arrays);
             glGenVertexArrays(1, &VAO);
