@@ -48,7 +48,9 @@ namespace our {
             // Syntax: void glBindBuffer(GLuint buffer)
             glBindBuffer(GL_ARRAY_BUFFER, VBO);
              // store vertices data in buffers
-             // void glBufferData(GLenum target, GLsizeiptr size, const void* data, GLenum usage);
+             // void glBufferData(GLenum target, GLsizeiptr size, const void* data, GLenum usage)
+             // vertices is a std:::vector but glBufferData expects a pointer.
+             // convert it to a pointer by calling "vertices.data()"
             glBufferData(GL_ARRAY_BUFFER, (vertices.size())*sizeof(Vertex), vertices.data(), GL_STATIC_DRAW);
             // enable sending data to attribute location
             // Syntax: void glEnableVertexAttribArray(GLuint index);
@@ -76,6 +78,8 @@ namespace our {
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
             // store elements data in buffer
             // void glBufferData(GLenum target, GLsizeiptr size, const void* data, GLenum usage);
+            // vertices is a std:::vector but glBufferData expects a pointer.
+            // convert it to a pointer by calling "vertices.data()"
             glBufferData(GL_ELEMENT_ARRAY_BUFFER, (elements.size())*sizeof(unsigned int), elements.data(), GL_STATIC_DRAW);
             // unbind the currently bound vertex array object (VAO)
             // Syntax: void glBindVertexArray(GLuint array);
