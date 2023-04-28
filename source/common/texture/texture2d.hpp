@@ -11,6 +11,7 @@ namespace our {
         // This constructor creates an OpenGL texture and saves its object name in the member variable "name" 
         Texture2D() {
             //TODO: (Req 5) Complete this function
+            //Syntax: glGenTextures(GLsizei n,GLuint * textures);
             glGenTextures(1,&name);
 
         };
@@ -18,6 +19,7 @@ namespace our {
         // This deconstructor deletes the underlying OpenGL texture
         ~Texture2D() { 
             //TODO: (Req 5) Complete this function
+            //Syntax:glDeleteTextures(	GLsizei n,const GLuint * textures);
             glDeleteTextures(1, &name);
 
         }
@@ -30,6 +32,7 @@ namespace our {
         // This method binds this texture to GL_TEXTURE_2D
         void bind() const {
             //TODO: (Req 5) Complete this function
+            //Syntax: glBindTexture(GLenum target,GLuint texture);
             glBindTexture(GL_TEXTURE_2D, name);
 
         }

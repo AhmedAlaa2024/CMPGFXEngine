@@ -20,7 +20,7 @@ namespace our {
         // This set of pipeline options specifies whether depth testing will be used or not and how it will be configured
         struct {
             bool enabled = false;
-            GLenum function = GL_LEQUAL;
+            GLenum function = GL_LEQUAL; //Passes if the incoming depth value is less than or equal to the stored depth value.
         } depthTesting;
 
         // This set of pipeline options specifies whether blending will be used or not and how it will be configured
@@ -43,28 +43,48 @@ namespace our {
         void setup() const {
             //TODO: (Req 4) Write this function
              if(faceCulling.enabled){
+                //Syntax : glEnable(GLenum cap)
                 glEnable(GL_CULL_FACE);
+                //tell which face to ignore 
+                //Syntax: glCullFace(GLenum mode);
                 glCullFace(faceCulling.culledFace);
+                //direction of the face that matters to me
+                //Syntax: glFrontFace(GLenum mode);
                 glFrontFace(faceCulling.frontFace);
             } else{
+                //Syntax: glDisable(GLenum cap);
                 glDisable(GL_CULL_FACE);
             }
             if(depthTesting.enabled){
+                //ennabled to know which object should be infront of which object according to the depth
+                //Syntax : glEnable(GLenum cap)
                 glEnable(GL_DEPTH_TEST);
+                //Syntax: glDepthFunc(GLenum func);
                 glDepthFunc(depthTesting.function);
             }else{
+                //Syntax: glDisable(GLenum cap);
                 glDisable(GL_DEPTH_TEST);
             }
             if(blending.enabled){
+                //Syntax : glEnable(GLenum cap)
                 glEnable(GL_BLEND);
+                //blending = (source) (equation) (destination)
+                //Syntax: glBlendEquation(	GLenum mode)
                 glBlendEquation(blending.equation);
+                //Syntax: glBlendFunc(GLenum sfactor,GLenum dfactor)
                 glBlendFunc(blending.sourceFactor,blending.destinationFactor);
+                //Syntax: glBlendColor(	GLclampf red,GLclampf green,GLclampf blue,GLclampf alpha);
                 glBlendColor(blending.constantColor.r, blending.constantColor.g, blending.constantColor.b, blending.constantColor.a);
                 
             }else{
+                //Syntax: glDisable(GLenum cap);
                 glDisable(GL_BLEND);
             }
+            //specify whether the individual color components in the frame buffer can or cannot be written
+            //Syntax:glColorMask(GLboolean red,GLboolean green,GLboolean blue,GLboolean alpha);
             glColorMask(colorMask.r,colorMask.g,colorMask.b,colorMask.a);
+            //enable or disable writing into the depth buffer
+            //Syntax:glDepthMask(GLboolean flag);
             glDepthMask(depthMask);
         }
 

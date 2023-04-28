@@ -45,11 +45,16 @@ our::Texture2D *our::texture_utils::loadImage(const std::string &filename, bool 
     our::Texture2D *texture = new our::Texture2D();
     // Bind the texture such that we upload the image data to its storage
     // TODO: (Req 5) Finish this function to fill the texture with the data found in "pixels"
-    glBindTexture(GL_TEXTURE_2D, texture->getOpenGLName());
-    // texture->bind();
+    texture->bind();
+    // Each row takes multiple of 4 bytes in memory
+    //Syntax: glPixelStorei(GLenum pname,GLint param);
     glPixelStorei(GL_UNPACK_ALIGNMENT, 4);
+    //To allocate memory for data texture
+    //Syntax:glTexImage2D(	GLenum target,GLint level,GLint internalformat,GLsizei width,GLsizei height,GLint border,GLenum format,GLenum type,const void * data);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, size.x, size.y, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
+    //To make versions of the texture at smaller level of details which is usefule for filtering
     if (generate_mipmap)
+        //Syntax: glGenerateMipmap(	GLenum target);
         glGenerateMipmap(GL_TEXTURE_2D);
     stbi_image_free(pixels); // Free image data after uploading to GPU
     return texture;
