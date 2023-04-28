@@ -47,17 +47,15 @@ namespace our {
     // Then it should bind the texture and sampler to a texture unit and send the unit number to the uniform variable "tex" 
     void TexturedMaterial::setup() const {
         //TODO: (Req 7) Write this function
-        // should call the setup of its parent (TintedMaterial)
         TintedMaterial::setup();
-        // set the "alphaThreshold" uniform to the value in the member variable alphaThreshold
+
         shader->set("alphaThreshold",alphaThreshold);
-        // activate texture unit 0
         glActiveTexture(GL_TEXTURE0);
-        // bind texture to the activated texture unit
-        texture->bind();
-        // bind sampler to texture unit 0 which it will sample from, bind(texture unit index to be bound to)
-        sampler->bind(0);
-        // send the unit number to the uniform variable "tex"
+        if (this->texture && this->sampler) {
+            texture->bind();
+            sampler->bind(0);
+        }
+
         shader->set("tex",0);
     }
 
