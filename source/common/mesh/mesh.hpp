@@ -77,8 +77,15 @@ namespace our {
         void draw() 
         {
             //TODO: (Req 2) Write this function
+            // Explaination: This function binds the vertex array object (VAO)
+            // that has been defined in the mesh class to the OpenGL context.
             glBindVertexArray(this->VAO);
             
+            // Explaination: The glDrawElements function specifies the primitive type (in this case, GL_TRIANGLES)
+            // and the number of elements to render (in this case, this->elementCount). 
+            // It also specifies the data type of the indices (in this case, GL_UNSIGNED_INT)
+            //  and the pointer to the index data (in this case, (void*)0).
+            //  This function call uses the current bound VAO to specify the vertex attributes for the mesh.
             glDrawElements(GL_TRIANGLES, this->elementCount, GL_UNSIGNED_INT, (void*)0);
         }
 
