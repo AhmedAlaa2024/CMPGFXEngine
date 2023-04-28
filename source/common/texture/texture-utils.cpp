@@ -9,8 +9,13 @@ our::Texture2D *our::texture_utils::empty(GLenum format, glm::ivec2 size)
 {
     our::Texture2D *texture = new our::Texture2D();
     // TODO: (Req 11) Finish this function to create an empty texture with the given size and format
-    GLuint rt_levels = glm::floor(glm::log2(glm::max<float>(size.x, size.y))) + 1; //==================>Question
+    GLuint rt_levels = glm::floor(glm::log2(glm::max<float>(size.x, size.y))) + 1;
     texture->bind();
+    //=========================================================================================================================//
+    //              glTexImage2D allocates memory for the texture and fills it with data                                      //
+    //              glTexStorage2D allocates memory for the texture but does not fill it with data                          //
+    //              glTexStorage2D is faster than glTexImage2D                                                            //
+    //==================================================================================================================//
     glTexStorage2D(GL_TEXTURE_2D, rt_levels, format, size.x, size.y);
     return texture;
 }
