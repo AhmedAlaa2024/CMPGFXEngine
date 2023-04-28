@@ -16,5 +16,4 @@ void main(){
     float total = floor(gl_FragCoord.x / size) + floor(gl_FragCoord.y/ size);
     bool isEven = mod(total, 2.0) == 0.0;
     frag_color.xyz = (isEven)? colors[0]:colors[1];
-  //Q2:shader test output  
 }

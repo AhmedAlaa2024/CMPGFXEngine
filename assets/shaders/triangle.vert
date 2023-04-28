@@ -18,7 +18,7 @@ uniform vec2 scale=vec2(1.0,1.0);
 //TODO: (Req 1) Finish this shader
 
 void main(){
-  //Question 1- V(3) and translation (vec2) and scle (vec2).
+     // read the vertex position from the vertex array
      vec3 positions[3]=vec3[3](
         vec3(-0.5,-0.5,0.0),
           vec3(0.5,-0.5,0.0),
