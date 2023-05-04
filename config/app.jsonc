@@ -23,6 +23,10 @@
                 "textured":{
                     "vs":"assets/shaders/textured.vert",
                     "fs":"assets/shaders/textured.frag"
+                },
+                "lit":{
+                    "vs":"assets/shaders/light.vert",
+                    "fs":"assets/shaders/light.frag"
                 }
             },
             "textures":{
@@ -124,7 +128,28 @@
                     "tint": [1, 1, 1, 1],
                     "texture": "moon",
                     "sampler": "default"
+                },
+                "light":{
+                    "type": "lit",
+                    "shader": "lit",
+                    "pipelineState": {
+                        "faceCulling":{
+                            "enabled": false
+                        },
+                        "depthTesting":{
+                            "enabled": true
+                        }
+                    },
+                    //"tint": [1, 1, 1, 1],
+                    //"texture": "moon",
+                    "albedo": "moon",
+                    "specular": "grass",
+                    "roughness": "wood",
+                    "ao": "glass",
+                    "emissive": "monkey",
+                    "sampler": "default"
                 }
+
             }
         },
         "world":[
@@ -159,7 +184,7 @@
                     {
                         "type": "Mesh Renderer",
                         "mesh": "monkey",
-                        "material": "monkey"
+                        "material": "light"
                     },
                     {
                         "type": "Movement",
