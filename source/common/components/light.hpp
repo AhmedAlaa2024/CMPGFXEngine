@@ -9,12 +9,9 @@
 // This light component includes properties for color, attenuation, cone angles, and type
 namespace our {
 
-    // It also has an enum class for the different types of lights that can be used in the scene
-    enum class Type { Point, Directional, Spot };
-
     class LightComponent : public Component {
     public:
-        Type type;
+        int type;
         glm::vec3 color;
         glm::vec3 attenuation;
         glm::vec2 cone_angles;
