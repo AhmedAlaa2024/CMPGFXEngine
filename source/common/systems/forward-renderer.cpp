@@ -242,42 +242,16 @@ namespace our
         // (computed as the product of the view-projection matrix and the command's local-to-world matrix), and calls the draw() method of the mesh.
         for (const auto &command : opaqueCommands)
         {
-<<<<<<< Updated upstream
-            command.material->setup();
-            if (auto light_material = dynamic_cast<LitMaterial *>(command.material); light_material)
-            {
-=======
             
             if (auto light_material = dynamic_cast<LitMaterial *>(command.material); light_material)
             {
                 light_material->setup();
 
->>>>>>> Stashed changes
                 light_material->shader->set("VP", VP);
                 light_material->shader->set("M", command.localToWorld);
                 light_material->shader->set("eye", command.localToWorld * glm::vec4(0, 0, 0, 1));
                 light_material->shader->set("M_IT", glm::transpose(glm::inverse(command.localToWorld)));
                 light_material->shader->set("light_count", (int)lightSources.size());
-<<<<<<< Updated upstream
-            
-                for (int i = 0; i < (int)lightSources.size(); i++)
-                {
-                  if(lightSources[i]->type >=0){
-                    // calculate position and direction of the light source in world
-                    glm::vec3 position = lightSources[i]->getOwner()->localTransform.position;
-                    glm::vec3 direction = lightSources[i]->getOwner()->getLocalToWorldMatrix()*glm::vec4(0,-1,0,0);
-                    
-                    light_material->shader->set("lights[" + std::to_string(i) + "].position", position); 
-                    light_material->shader->set("lights[" + std::to_string(i) + "].direction",direction);
-                    light_material->shader->set("lights[" + std::to_string(i) + "].type", lightSources[i]->type);
-                    light_material->shader->set("lights[" + std::to_string(i) + "].color",lightSources[i]->color);
-                    light_material->shader->set("lights[" + std::to_string(i) + "].attenuation", lightSources[i]->attenuation);
-                    light_material->shader->set("lights[" + std::to_string(i) + "].cone_angles", lightSources[i]->cone_angles); 
-                }}
-            }
-            else 
-            {
-=======
 
                 light_material->shader->set("sky.top", glm::vec3(0.7, 0.3, 0.8));
                 light_material->shader->set("sky.horizon", glm::vec3(0.7, 0.3, 0.8));
@@ -319,7 +293,6 @@ namespace our
             else
             {
                 command.material->setup();
->>>>>>> Stashed changes
                 glUniformMatrix4fv(command.material->shader->getUniformLocation("transform"), 1, GL_FALSE, glm::value_ptr(VP * command.localToWorld));
             }
             command.mesh->draw();
