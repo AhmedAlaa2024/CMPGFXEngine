@@ -17,5 +17,12 @@ namespace our {
         glm::vec2 cone_angles;
         // The position and direction of the light are not included in the component, 
         // as they will be calculated from the entity component
+<<<<<<< Updated upstream
+=======
+        // Reads light parameters from the given json object
+        void deserialize(const nlohmann::json& data) override;
+        // identify it is a light component
+        static std::string getID() { return "light"; }
+>>>>>>> Stashed changes
     };
 }

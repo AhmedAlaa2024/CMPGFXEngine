@@ -34,7 +34,12 @@
                 "grass": "assets/textures/grass_ground_d.jpg",
                 "wood": "assets/textures/wood.jpg",
                 "glass": "assets/textures/glass-panels.png",
-                "monkey": "assets/textures/monkey.png"
+                "monkey": "assets/textures/monkey.png",
+                "albedo": "assets/textures/albedo.jpg",
+                "specular": "assets/textures/specular.jpg",
+                "ambient_occlusion": "assets/textures/ambient_occlusion.jpg",
+                "emissive":"assets/textures/emissive.jpg",
+                "roughness":"assets/textures/roughness.jpg"
             },
             "meshes":{
                 "cube": "assets/models/cube.obj",
@@ -111,7 +116,7 @@
                         }
                     },
                     "tint": [1, 1, 1, 1],
-                    "texture": "monkey",
+                    "texture": "roughness",
                     "sampler": "default"
                 },
                 "moon":{
@@ -140,6 +145,7 @@
                             "enabled": true
                         }
                     },
+<<<<<<< Updated upstream
                     //"tint": [1, 1, 1, 1],
                     //"texture": "moon",
                     "albedo": "moon",
@@ -147,6 +153,13 @@
                     "roughness": "wood",
                     "ao": "glass",
                     "emissive": "monkey",
+=======
+                    "albedo": "albedo",
+                    "specular": "specular",
+                    "roughness": "roughness",
+                    "ao": "ambient_occlusion",
+                    "emissive": "emissive",
+>>>>>>> Stashed changes
                     "sampler": "default"
                 }
 
@@ -162,29 +175,42 @@
                     {
                         "type": "Free Camera Controller"
                     }
-                ],
-                "children": [
+                ]
+            },
+            {
+                "components": [
                     {
-                        "position": [1, -1, -1],
-                        "rotation": [45, 45, 0],
-                        "scale": [0.1, 0.1, 1.0],
-                        "components": [
-                            {
-                                "type": "Mesh Renderer",
-                                "mesh": "cube",
-                                "material": "metal"
-                            }
-                        ]
+                        "type": "light",
+                        "lighttype": "DIRECTIONAL",
+                        "color": [0,1,0],
+                        "attenuation": [0.001, 0.001, 0.0001]
+                    },
+                    {
+                        "type": "light",
+                        "typeOfLight": "POINT",
+                        "color": [0, 0, 1],
+                        "attenuation": [0.001, 0.001, 0.0001]
+                    },
+                    {
+                        "type": "light",
+                        "lighttype": "SPOT",
+                        "color": [ 1, 1, 1],
+                        "attenuation": [0.0001, 0.0001, 0.0001],
+                        "cone_angles.in": 90,
+                        "cone-angles.out": 180
                     }
                 ]
             },
             {
-                "rotation": [-45, 0, 0],
+                "position": [0, 0, -1],
+                "rotation": [0, 45, 0],
+                "scale": [2, 2, 2],
                 "components": [
                     {
                         "type": "Mesh Renderer",
                         "mesh": "monkey",
                         "material": "light"
+<<<<<<< Updated upstream
                     },
                     {
                         "type": "Movement",
@@ -274,6 +300,8 @@
                         "type": "Mesh Renderer",
                         "mesh": "sphere",
                         "material": "moon"
+=======
+>>>>>>> Stashed changes
                     },
                     {
                         "type": "Movement",
