@@ -370,21 +370,21 @@ namespace our
                     light_material->shader->set("lights[" + std::to_string(i) + "].attenuation", lightSources[i]->attenuation);
 
                     int t = lightSources[i]->type;
+
+                    switch (t)
+                    {
+                    case 0:
+                        light_material->shader->set("lights[" + std::to_string(i) + "].direction", direction);
+                        break;
+                    case 1:
+                        light_material->shader->set("lights[" + std::to_string(i) + "].position", position);
+                        break;
+                    case 2:
                         light_material->shader->set("lights[" + std::to_string(i) + "].position", position);
                         light_material->shader->set("lights[" + std::to_string(i) + "].direction", direction);
                         light_material->shader->set("lights[" + std::to_string(i) + "].cone_angles", lightSources[i]->cone_angles);
-                        light_material->shader->set("lights[" + std::to_string(i) + "].color", lightSources[i]->color);
-                    // switch (t)
-                    // {
-                    // case 0:
-                    //     light_material->shader->set("lights[" + std::to_string(i) + "].direction", direction);
-                    //     break;
-                    // case 1:
-                    //     light_material->shader->set("lights[" + std::to_string(i) + "].position", position);
-                    //     break;
-                    // case 2:
-                    //     break;
-                    // }
+                        break;
+                    }
                 }
             }
             else

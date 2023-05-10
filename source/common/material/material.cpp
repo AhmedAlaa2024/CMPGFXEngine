@@ -139,11 +139,7 @@ namespace our {
 
     // This function read the material data from a json object
     void LitMaterial::deserialize(const nlohmann::json& data){
-<<<<<<< Updated upstream
-        LitMaterial::deserialize(data);
-=======
         Material::deserialize(data);
->>>>>>> Stashed changes
         if(!data.is_object()) return;
         albedo = AssetLoader<Texture2D>::get(data.value("albedo", ""));
         specular = AssetLoader<Texture2D>::get(data.value("specular", ""));

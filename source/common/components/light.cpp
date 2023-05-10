@@ -13,6 +13,8 @@ namespace our
         if (!data.is_object())
             return;
 
+        color = glm::vec3(data.value("color", glm::vec3(0,0,1)));
+
         std::string typeStr = data.value("lighttype", "DIRECTIONAL");
 
         if (typeStr == "DIRECTIONAL")

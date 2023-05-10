@@ -43,7 +43,7 @@
             },
             "meshes":{
                 "cube": "assets/models/cube.obj",
-                "monkey": "assets/models/monkey.obj",
+                "monkey": "assets/models/Suzanne.obj",
                 "plane": "assets/models/plane.obj",
                 "sphere": "assets/models/sphere.obj"
             },
@@ -174,22 +174,33 @@
                         "lighttype": "DIRECTIONAL",
                         "color": [0,1,0],
                         "attenuation": [0.001, 0.001, 0.0001]
-                    },
-                    {
-                        "type": "light",
-                        "typeOfLight": "POINT",
-                        "color": [0, 0, 1],
-                        "attenuation": [0.001, 0.001, 0.0001]
-                    },
-                    {
-                        "type": "light",
-                        "lighttype": "SPOT",
-                        "color": [ 1, 1, 1],
-                        "attenuation": [0.0001, 0.0001, 0.0001],
-                        "cone_angles.in": 90,
-                        "cone-angles.out": 180
                     }
                 ]
+            },
+            {               
+                "position": [0, 0, 18],  
+                "components": [
+                {
+                    "type": "light",
+                    "typeOfLight": "POINT",
+                    "color": [0, 0, 1],
+                    "attenuation": [0.001, 0.001, 0.0001]
+                }
+            ]
+            },
+            {
+                "position": [10, 4, 0],
+                "rotation": [0, 0, 0],
+                "components": [
+                {
+                    "type": "light",
+                    "lighttype": "SPOT",
+                    "color": [ 1, 1, 0],
+                    "attenuation": [0.001, 0.001, 0.001],
+                    "cone_angles.in": 5,
+                    "cone-angles.out": 10
+                }
+            ]
             },
             {
                 "position": [0, 0, -1],

@@ -77,7 +77,7 @@ void main(){
     vec3 world_to_light_dir;
     vec3 color=emissive+ambient_light*ambient;
     
-    int actual_light_count=MAX_LIGHTS;//min(MAX_LIGHTS,light_count);
+    int actual_light_count = min(MAX_LIGHTS,light_count);
     for(int light_idx=0;light_idx<actual_light_count;light_idx++){
         Light light=lights[light_idx];
         float attenuation=1.;
