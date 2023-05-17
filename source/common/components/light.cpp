@@ -29,7 +29,7 @@ namespace our
        
         if (type != 0)
         {
-        attenuation = glm::vec3(data.value("attenuation", glm::vec3(1, 0, 0)));
+        attenuation = glm::vec3(data.value("attenuation", glm::vec3(1, 1, 1)));
         }
 
         if (type ==2)

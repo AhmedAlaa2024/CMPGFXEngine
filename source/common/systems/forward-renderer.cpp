@@ -261,8 +261,8 @@ namespace our
                 for (int i = 0; i < (int)lightSources.size(); i++)
                 {
                     // calculate position and direction of the light source in world
-                    glm::vec3 position = lightSources[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0,0,0,1);
-                    glm::vec3 direction = lightSources[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0,-1,0,0);
+                    glm::vec3 position = lightSources[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, 0, 1);
+                    glm::vec3 direction = lightSources[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, -1, 0, 0);
 
                     light_material->shader->set("lights[" + std::to_string(i) + "].type", lightSources[i]->type);
                     light_material->shader->set("lights[" + std::to_string(i) + "].color", lightSources[i]->color);
@@ -270,24 +270,20 @@ namespace our
 
                     int t = lightSources[i]->type;
 
+                    switch (t)
+                    {
+                    case 0:
+                        light_material->shader->set("lights[" + std::to_string(i) + "].direction", direction);
+                        break;
+                    case 1:
+                        light_material->shader->set("lights[" + std::to_string(i) + "].position", position);
+                        break;
+                    case 2:
                         light_material->shader->set("lights[" + std::to_string(i) + "].position", position);
                         light_material->shader->set("lights[" + std::to_string(i) + "].direction", direction);
                         light_material->shader->set("lights[" + std::to_string(i) + "].cone_angles", lightSources[i]->cone_angles);
-                        light_material->shader->set("lights[" + std::to_string(i) + "].color", lightSources[i]->color);
-                    // switch (t)
-                    // {
-                    // case 0:
-                    //     light_material->shader->set("lights[" + std::to_string(i) + "].direction", direction);
-                    //     break;
-                    // case 1:
-                    //     light_material->shader->set("lights[" + std::to_string(i) + "].position", position);
-                    //     break;
-                    // case 2:
-                    //     light_material->shader->set("lights[" + std::to_string(i) + "].position", position);
-                    //     light_material->shader->set("lights[" + std::to_string(i) + "].direction", direction);
-                    //     light_material->shader->set("lights[" + std::to_string(i) + "].cone_angles", lightSources[i]->cone_angles);
-                    //     break;
-                    // }
+                        break;
+                    }
                 }
             }
             else
