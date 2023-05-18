@@ -32,7 +32,8 @@
                 "glass": "assets/textures/glass-panels.png",
                 "monkey": "assets/textures/monkey.png",
                 "gun": "assets/textures/Gun.png",
-                "enemy":"assets/textures/TP_Vampire_S0_DF.png"
+                "enemy":"assets/textures/TP_Vampire_S0_DF.png",
+                "building":"assets/textures/Farmhouse Texture.jpg"
             },
             "meshes":{
                 "cube": "assets/models/cube.obj",
@@ -40,7 +41,8 @@
                 "plane": "assets/models/plane.obj",
                 "sphere": "assets/models/sphere.obj",
                 "gun": "assets/models/Gun.obj",
-                "enemy":"assets/models/ReynaNoTextures.obj"
+                "enemy":"assets/models/ReynaNoTextures.obj",
+                "building":"assets/models/farmhouse_obj.obj"
             },
             "samplers":{
                 "default":{},
@@ -158,6 +160,21 @@
                     "tint": [1, 1, 1, 1],
                     "texture": "enemy",
                     "sampler": "default"
+                },
+                "building":{
+                    "type": "textured",
+                    "shader": "textured",
+                    "pipelineState": {
+                        "faceCulling":{
+                            "enabled": false
+                        },
+                        "depthTesting":{
+                            "enabled": true
+                        }
+                    },
+                    "tint": [1, 1, 1, 1],
+                    "texture": "building",
+                    "sampler": "default"
                 }
 
             }
@@ -205,19 +222,24 @@
             //         }
             //     ]
             // },
-            {
-                "name":"ground",
-                "position": [0, -1, 0],
-                "rotation": [-90, 0, 0],
-                "scale": [100, 100, 100],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "plane",
-                        "material": "grass"
-                    }
-                ]
-            },
+            {"name":"ground","position": [0, -1, 0],"rotation": [-90, 0, 0],"scale": [7, 7, 7],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
+            {"name":"ground","position": [-6, -1, 0],"rotation": [-90, 0, 0],"scale": [7, 7, 7],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
+            {"name":"ground","position": [6, -1, 0],"rotation": [-90, 0, 0],"scale": [7, 7, 7],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
+            {"name":"ground","position": [-12, -1, 0],"rotation": [-90, 0, 0],"scale": [7, 7, 7],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
+            {"name":"ground","position": [12, -1, 0],"rotation": [-90, 0, 0],"scale": [7, 7, 7],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
+            {"name":"ground","position": [-24, -1, 0],"rotation": [-90, 0, 0],"scale": [7, 7, 7],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
+            {"name":"ground","position": [24, -1, 0],"rotation": [-90, 0, 0],"scale": [7, 7, 7],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
+            {"name":"ground","position": [-36, -1, 0],"rotation": [-90, 0, 0],"scale": [7, 7, 7],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
+            {"name":"ground","position": [36, -1, 0],"rotation": [-90, 0, 0],"scale": [7, 7, 7],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
+            {"name":"ground","position": [-48, -1, 0],"rotation": [-90, 0, 0],"scale": [7, 7, 7],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
+            {"name":"ground","position": [48, -1, 0],"rotation": [-90, 0, 0],"scale": [7, 7, 7],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
+
+            // {"name":"ground","position": [0, -1, 0],"rotation": [-90, 0, 0],"scale": [100, 100, 100],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
+            // {"name":"ground","position": [0, -1, 0],"rotation": [-90, 0, 0],"scale": [100, 100, 100],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
+            // {"name":"ground","position": [0, -1, 0],"rotation": [-90, 0, 0],"scale": [100, 100, 100],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
+            // {"name":"ground","position": [0, -1, 0],"rotation": [-90, 0, 0],"scale": [100, 100, 100],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
+
+            //===================================enemies==============================//
             {
                 "name":"enemy",
                 "position":[0,-1,-1],
@@ -257,281 +279,312 @@
                     }
                 ]
             },
-            //===========================================================wall=========================================//
-                        //=============================rigth side of the fences===============================//
-                        {
-                            "name":"wall",
-                            "position": [10, 1, -8],
-                            "rotation": [0, 90, 0],
-                            "scale": [2, 2, 2],
-                            "components": [
-                                {
-                                    "type": "Mesh Renderer",
-                                    "mesh": "plane",
-                                    "material": "glass"
-                                }
-                            ]
-                        }, 
-                        {
-                            "name":"wall",
-                            "position": [10, 1, -4],
-                            "rotation": [0, 90, 0],
-                            "scale": [2, 2, 2],
-                            "components": [
-                                {
-                                    "type": "Mesh Renderer",
-                                    "mesh": "plane",
-                                    "material": "glass"
-                                }
-                            ]
-                        }, 
-                        {
-                            "name":"wall",
-                            "position": [10, 1, 0],
-                            "rotation": [0, 90, 0],
-                            "scale": [2, 2, 2],
-                            "components": [
-                                {
-                                    "type": "Mesh Renderer",
-                                    "mesh": "plane",
-                                    "material": "glass"
-                                }
-                            ]
-                        }, 
-                        {
-                            "name":"wall",
-                            "position": [10, 1, 4],
-                            "rotation": [0, 90, 0],
-                            "scale": [2, 2, 2],
-                            "components": [
-                                {
-                                    "type": "Mesh Renderer",
-                                    "mesh": "plane",
-                                    "material": "glass"
-                                }
-                            ]
-                        }, 
-                        {
-                            "name":"wall",
-                            "position": [10, 1, 8],
-                            "rotation": [0, 90, 0],
-                            "scale": [2, 2, 2],
-                            "components": [
-                                {
-                                    "type": "Mesh Renderer",
-                                    "mesh": "plane",
-                                    "material": "glass"
-                                }
-                            ]
-                        },
-      //====================================left side of the fences==========================================//
-            {
-                "name":"wall",
-                "position": [-10, 1, -8],
-                "rotation": [0, 90, 0],
-                "scale": [2, 2, 2],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "plane",
-                        "material": "glass"
-                    }
-                ]
-            }, 
-            {
-                "name":"wall",
-                "position": [-10, 1, -4],
-                "rotation": [0, 90, 0],
-                "scale": [2, 2, 2],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "plane",
-                        "material": "glass"
-                    }
-                ]
-            }, 
-            {
-                "name":"wall",
-                "position": [-10, 1, 0],
-                "rotation": [0, 90, 0],
-                "scale": [2, 2, 2],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "plane",
-                        "material": "glass"
-                    }
-                ]
-            }, 
-            {
-                "name":"wall",
-                "position": [-10, 1, 4],
-                "rotation": [0, 90, 0],
-                "scale": [2, 2, 2],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "plane",
-                        "material": "glass"
-                    }
-                ]
-            }, 
-            {
-                "name":"wall",
-                "position": [-10, 1, 8],
-                "rotation": [0, 90, 0],
-                "scale": [2, 2, 2],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "plane",
-                        "material": "glass"
-                    }
-                ]
-            },
-            //=========================================front Wall============================================//
-            {
-                "name":"wall",
-                "position": [8, 1, -10],
-                "rotation": [0, 0, 0],
-                "scale": [2, 2, 2],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "plane",
-                        "material": "glass"
-                    }
-                ]
-            },
-            {
-                "name":"wall",
-                "position": [4, 1, -10],
-                "rotation": [0, 0, 0],
-                "scale": [2, 2, 2],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "plane",
-                        "material": "glass"
-                    }
-                ]
-            },
-            {
-                "name":"wall",
-                "position": [0, 1, -10],
-                "rotation": [0, 0, 0],
-                "scale": [2, 2, 2],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "plane",
-                        "material": "glass"
-                    }
-                ]
-            },
-            {
-                "name":"wall",
-                "position": [-4, 1, -10],
-                "rotation": [0, 0, 0],
-                "scale": [2, 2, 2],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "plane",
-                        "material": "glass"
-                    }
-                ]
-            },
-            {
-                "name":"wall",
-                "position": [-8, 1, -10],
-                "rotation": [0, 0, 0],
-                "scale": [2, 2, 2],
-                "components": [
-                    {
-                        "type": "Mesh Renderer",
-                        "mesh": "plane",
-                        "material": "glass"
-                    }
-                ]
-            }
-                        // {
-            //     "position": [0, 1, 2],
-            //     "rotation": [0, 0, 0],
-            //     "scale": [2, 2, 2],
-            //     "components": [
-            //         {
-            //             "type": "Mesh Renderer",
-            //             "mesh": "plane",
-            //             "material": "glass"
-            //         }
-            //     ]
-            // },
-            // {
-            //     "position": [0, 1, -2],
-            //     "rotation": [0, 0, 0],
-            //     "scale": [2, 2, 2],
-            //     "components": [
-            //         {
-            //             "type": "Mesh Renderer",
-            //             "mesh": "plane",
-            //             "material": "glass"
-            //         }
-            //     ]
-            // },
-            // {
-            //     "position": [2, 1, 0],
-            //     "rotation": [0, 90, 0],
-            //     "scale": [2, 2, 2],
-            //     "components": [
-            //         {
-            //             "type": "Mesh Renderer",
-            //             "mesh": "plane",
-            //             "material": "glass"
-            //         }
-            //     ]
-            // },
-            // {
-            //     "position": [-2, 1, 0],
-            //     "rotation": [0, 90, 0],
-            //     "scale": [2, 2, 2],
-            //     "components": [
-            //         {
-            //             "type": "Mesh Renderer",
-            //             "mesh": "plane",
-            //             "material": "glass"
-            //         }
-            //     ]
-            // },
-            // {
-            //     "position": [0, 3, 0],
-            //     "rotation": [90, 0, 0],
-            //     "scale": [2, 2, 2],
-            //     "components": [
-            //         {
-            //             "type": "Mesh Renderer",
-            //             "mesh": "plane",
-            //             "material": "glass"
-            //         }
-            //     ]
-            // },
-            // {
-            //     "position": [0, 10, 0],
-            //     "rotation": [45, 45, 0],
-            //     "scale": [5, 5, 5],
-            //     "components": [
-            //         {
-            //             "type": "Mesh Renderer",
-            //             "mesh": "sphere",
-            //             "material": "moon"
-            //         },
-            //         {
-            //             "type": "Movement",
-            //             "angularVelocity": [0, 90, 0]
-            //         }
-            //     ]
-            // }
+            //====================================building======================================================//
+            {"name":"building","position":[-5,0,-9],"rotation":[0,270,0],"scale":[0.5,0.5,0.5],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]}
+            // {"name":"building","position":[-200,1.5,-140],"rotation":[0,90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},
+            // {"name":"building","position":[-200,10.6,-100],"rotation":[0,90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},
+            // {"name":"building","position":[-200,19.4,-60],"rotation":[0,90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},
+            // {"name":"building","position":[-200,19.4,-20],"rotation":[0,90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]}
+            // {"name":"building","position":[-200,1.5,20],"rotation":[0,90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},
+            // {"name":"building","position":[-200,10.6,60],"rotation":[0,90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","building":"building","material":"building"}]},
+            // {"name":"building","position":[-200,10.6,100],"rotation":[0,90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},
+            // {"name":"building","position":[-200,1.5,140],"rotation":[0,90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},
+            // {"name":"building","position":[-200,19.4,180],"rotation":[0,90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},
+            // {"name":"building","position":[-200,1.5,220],"rotation":[0,90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},
+            // {"name":"building","position":[200,1.5,-180],"rotation":[0,-90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},
+            // {"name":"building","position":[200,1.5,-140],"rotation":[0,-90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},
+            // {"name":"building","position":[200,1.5,-100],"rotation":[0,-90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},
+            // {"name":"building","position":[200,19.4,-60],"rotation":[0,-90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]}
+            //{"name":"building","position":[200,19.4,-20],"rotation":[0,-90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[200,10.6,20],"rotation":[0,-90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[200,10.6,60],"rotation":[0,-90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[200,19.4,100],"rotation":[0,-90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[200,19.4,140],"rotation":[0,-90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[200,1.5,180],"rotation":[0,-90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[200,10.6,220],"rotation":[0,-90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-180,19.4,-200],"rotation":[0,0,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-140,19.4,-200],"rotation":[0,0,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-100,10.6,-200],"rotation":[0,0,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-60,19.4,-200],"rotation":[0,0,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-20,1.5,-200],"rotation":[0,0,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[20,1.5,-200],"rotation":[0,0,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[60,1.5,-200],"rotation":[0,0,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[100,1.5,-200],"rotation":[0,0,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[140,10.6,-200],"rotation":[0,0,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[180,10.6,-200],"rotation":[0,0,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[220,19.4,-200],"rotation":[0,0,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-180,19.4,200],"rotation":[0,180,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-140,1.5,200],"rotation":[0,180,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-100,19.4,200],"rotation":[0,180,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-60,10.6,200],"rotation":[0,180,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-20,19.4,200],"rotation":[0,180,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[20,19.4,200],"rotation":[0,180,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[60,1.5,200],"rotation":[0,180,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[100,10.6,200],"rotation":[0,180,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[140,19.4,200],"rotation":[0,180,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[180,1.5,200],"rotation":[0,180,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[220,10.6,200],"rotation":[0,180,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-160,1.5,-180],"rotation":[0,0,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-160,1.5,-140],"rotation":[0,180,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-180,1.5,-160],"rotation":[0,90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-140,1.5,-160],"rotation":[0,-90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-160,19.4,-100],"rotation":[0,0,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-160,19.4,-60],"rotation":[0,180,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-180,19.4,-80],"rotation":[0,90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-140,19.4,-80],"rotation":[0,-90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-160,1.5,60],"rotation":[0,0,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-160,1.5,100],"rotation":[0,180,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-180,1.5,80],"rotation":[0,90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-140,1.5,80],"rotation":[0,-90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-160,10.6,100],"rotation":[0,0,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-160,10.6,140],"rotation":[0,180,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-180,10.6,120],"rotation":[0,90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-140,10.6,120],"rotation":[0,-90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-120,10.6,-180],"rotation":[0,0,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-120,10.6,-140],"rotation":[0,180,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-140,10.6,-160],"rotation":[0,90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-100,10.6,-160],"rotation":[0,-90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-120,19.4,20],"rotation":[0,0,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-120,19.4,60],"rotation":[0,180,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-140,19.4,40],"rotation":[0,90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-100,19.4,40],"rotation":[0,-90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-120,1.5,60],"rotation":[0,0,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-120,1.5,100],"rotation":[0,180,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-140,1.5,80],"rotation":[0,90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-100,1.5,80],"rotation":[0,-90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-80,10.6,-180],"rotation":[0,0,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-80,10.6,-140],"rotation":[0,180,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-100,10.6,-160],"rotation":[0,90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-60,10.6,-160],"rotation":[0,-90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-80,10.6,-140],"rotation":[0,0,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-80,10.6,-100],"rotation":[0,180,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-100,10.6,-120],"rotation":[0,90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-60,10.6,-120],"rotation":[0,-90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-80,1.5,-100],"rotation":[0,0,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-80,1.5,-60],"rotation":[0,180,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-100,1.5,-80],"rotation":[0,90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-60,1.5,-80],"rotation":[0,-90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-80,10.6,20],"rotation":[0,0,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-80,10.6,60],"rotation":[0,180,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-100,10.6,40],"rotation":[0,90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-60,10.6,40],"rotation":[0,-90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-80,1.5,60],"rotation":[0,0,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-80,1.5,100],"rotation":[0,180,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-100,1.5,80],"rotation":[0,90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[-60,1.5,80],"rotation":[0,-90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[40,10.6,-180],"rotation":[0,0,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[40,10.6,-140],"rotation":[0,180,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[20,10.6,-160],"rotation":[0,90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[60,10.6,-160],"rotation":[0,-90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[40,10.6,-100],"rotation":[0,0,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[40,10.6,-60],"rotation":[0,180,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[20,10.6,-80],"rotation":[0,90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[60,10.6,-80],"rotation":[0,-90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[40,1.5,20],"rotation":[0,0,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[40,1.5,60],"rotation":[0,180,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[20,1.5,40],"rotation":[0,90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[60,1.5,40],"rotation":[0,-90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[40,1.5,60],"rotation":[0,0,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[40,1.5,100],"rotation":[0,180,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[20,1.5,80],"rotation":[0,90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[60,1.5,80],"rotation":[0,-90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[40,19.4,100],"rotation":[0,0,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[40,19.4,140],"rotation":[0,180,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[20,19.4,120],"rotation":[0,90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[60,19.4,120],"rotation":[0,-90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[80,19.4,-180],"rotation":[0,0,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[80,19.4,-140],"rotation":[0,180,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[60,19.4,-160],"rotation":[0,90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[100,19.4,-160],"rotation":[0,-90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[80,10.6,-100],"rotation":[0,0,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[80,10.6,-60],"rotation":[0,180,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[60,10.6,-80],"rotation":[0,90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[100,10.6,-80],"rotation":[0,-90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[120,10.6,-180],"rotation":[0,0,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[120,10.6,-140],"rotation":[0,180,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[100,10.6,-160],"rotation":[0,90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[140,10.6,-160],"rotation":[0,-90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[120,19.4,-100],"rotation":[0,0,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[120,19.4,-60],"rotation":[0,180,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[100,19.4,-80],"rotation":[0,90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[140,19.4,-80],"rotation":[0,-90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[120,19.4,20],"rotation":[0,0,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[120,19.4,60],"rotation":[0,180,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[100,19.4,40],"rotation":[0,90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[140,19.4,40],"rotation":[0,-90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[120,19.4,60],"rotation":[0,0,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[120,19.4,100],"rotation":[0,180,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[100,19.4,80],"rotation":[0,90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[140,19.4,80],"rotation":[0,-90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[120,19.4,100],"rotation":[0,0,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[120,19.4,140],"rotation":[0,180,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[100,19.4,120],"rotation":[0,90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},{"name":"building","position":[140,19.4,120],"rotation":[0,-90,0],"scale":[20,20,1],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]}
+
+    
+    //         {
+    //             "position": [20, 0, -15],
+    //             "rotation": [0, 180, 0],
+    //             "scale": [0.5, 0.5, 0.5],
+    //         "components": [
+    //             {
+    //                 "type": "Mesh Renderer",
+    //                 "mesh": "building",
+    //                 "material": "building"
+    //             }
+    //         ]
+    //     }
+    //         ===========================================================wall=========================================//
+    //                     =============================rigth side of the fences===============================//
+    //                     {
+    //                         "name":"wall",
+    //                         "position": [10, 1, -8],
+    //                         "rotation": [0, 90, 0],
+    //                         "scale": [2, 2, 2],
+    //                         "components": [
+    //                             {
+    //                                 "type": "Mesh Renderer",
+    //                                 "mesh": "building",
+    //                                 "material": "glass"
+    //                             }
+    //                         ]
+    //                     }, 
+    //                     {
+    //                         "name":"wall",
+    //                         "position": [10, 1, -4],
+    //                         "rotation": [0, 90, 0],
+    //                         "scale": [2, 2, 2],
+    //                         "components": [
+    //                             {
+    //                                 "type": "Mesh Renderer",
+    //                                 "mesh": "building",
+    //                                 "material": "glass"
+    //                             }
+    //                         ]
+    //                     }, 
+    //                     {
+    //                         "name":"wall",
+    //                         "position": [10, 1, 0],
+    //                         "rotation": [0, 90, 0],
+    //                         "scale": [2, 2, 2],
+    //                         "components": [
+    //                             {
+    //                                 "type": "Mesh Renderer",
+    //                                 "mesh": "building",
+    //                                 "material": "glass"
+    //                             }
+    //                         ]
+    //                     }, 
+    //                     {
+    //                         "name":"wall",
+    //                         "position": [10, 1, 4],
+    //                         "rotation": [0, 90, 0],
+    //                         "scale": [2, 2, 2],
+    //                         "components": [
+    //                             {
+    //                                 "type": "Mesh Renderer",
+    //                                 "mesh": "building",
+    //                                 "material": "glass"
+    //                             }
+    //                         ]
+    //                     }, 
+    //                     {
+    //                         "name":"wall",
+    //                         "position": [10, 1, 8],
+    //                         "rotation": [0, 90, 0],
+    //                         "scale": [2, 2, 2],
+    //                         "components": [
+    //                             {
+    //                                 "type": "Mesh Renderer",
+    //                                 "mesh": "building",
+    //                                 "material": "glass"
+    //                             }
+    //                         ]
+    //                     },
+    //   ====================================left side of the fences==========================================//
+    //         {
+    //             "name":"wall",
+    //             "position": [-10, 1, -8],
+    //             "rotation": [0, 90, 0],
+    //             "scale": [2, 2, 2],
+    //             "components": [
+    //                 {
+    //                     "type": "Mesh Renderer",
+    //                     "mesh": "building",
+    //                     "material": "glass"
+    //                 }
+    //             ]
+    //         }, 
+    //         {
+    //             "name":"wall",
+    //             "position": [-10, 1, -4],
+    //             "rotation": [0, 90, 0],
+    //             "scale": [2, 2, 2],
+    //             "components": [
+    //                 {
+    //                     "type": "Mesh Renderer",
+    //                     "mesh": "building",
+    //                     "material": "glass"
+    //                 }
+    //             ]
+    //         }, 
+    //         {
+    //             "name":"wall",
+    //             "position": [-10, 1, 0],
+    //             "rotation": [0, 90, 0],
+    //             "scale": [2, 2, 2],
+    //             "components": [
+    //                 {
+    //                     "type": "Mesh Renderer",
+    //                     "mesh": "building",
+    //                     "material": "glass"
+    //                 }
+    //             ]
+    //         }, 
+    //         {
+    //             "name":"wall",
+    //             "position": [-10, 1, 4],
+    //             "rotation": [0, 90, 0],
+    //             "scale": [2, 2, 2],
+    //             "components": [
+    //                 {
+    //                     "type": "Mesh Renderer",
+    //                     "mesh": "building",
+    //                     "material": "glass"
+    //                 }
+    //             ]
+    //         }, 
+    //         {
+    //             "name":"wall",
+    //             "position": [-10, 1, 8],
+    //             "rotation": [0, 90, 0],
+    //             "scale": [2, 2, 2],
+    //             "components": [
+    //                 {
+    //                     "type": "Mesh Renderer",
+    //                     "mesh": "building",
+    //                     "material": "glass"
+    //                 }
+    //             ]
+    //         },
+    //         =========================================front Wall============================================//
+    //         {
+    //             "name":"wall",
+    //             "position": [8, 1, -10],
+    //             "rotation": [0, 0, 0],
+    //             "scale": [2, 2, 2],
+    //             "components": [
+    //                 {
+    //                     "type": "Mesh Renderer",
+    //                     "mesh": "building",
+    //                     "material": "glass"
+    //                 }
+    //             ]
+    //         },
+    //         {
+    //             "name":"wall",
+    //             "position": [4, 1, -10],
+    //             "rotation": [0, 0, 0],
+    //             "scale": [2, 2, 2],
+    //             "components": [
+    //                 {
+    //                     "type": "Mesh Renderer",
+    //                     "mesh": "building",
+    //                     "material": "glass"
+    //                 }
+    //             ]
+    //         },
+    //         {
+    //             "name":"wall",
+    //             "position": [0, 1, -10],
+    //             "rotation": [0, 0, 0],
+    //             "scale": [2, 2, 2],
+    //             "components": [
+    //                 {
+    //                     "type": "Mesh Renderer",
+    //                     "mesh": "building",
+    //                     "material": "glass"
+    //                 }
+    //             ]
+    //         },
+    //         {
+    //             "name":"wall",
+    //             "position": [-4, 1, -10],
+    //             "rotation": [0, 0, 0],
+    //             "scale": [2, 2, 2],
+    //             "components": [
+    //                 {
+    //                     "type": "Mesh Renderer",
+    //                     "mesh": "building",
+    //                     "material": "glass"
+    //                 }
+    //             ]
+    //         },
+    //         {
+    //             "name":"wall",
+    //             "position": [-8, 1, -10],
+    //             "rotation": [0, 0, 0],
+    //             "scale": [2, 2, 2],
+    //             "components": [
+    //                 {
+    //                     "type": "Mesh Renderer",
+    //                     "mesh": "building",
+    //                     "material": "glass"
+    //                 }
+    //             ]
+    //         }
+    //                     {
+    //             "position": [0, 1, 2],
+    //             "rotation": [0, 0, 0],
+    //             "scale": [2, 2, 2],
+    //             "components": [
+    //                 {
+    //                     "type": "Mesh Renderer",
+    //                     "mesh": "building",
+    //                     "material": "glass"
+    //                 }
+    //             ]
+    //         },
+    //         {
+    //             "position": [0, 1, -2],
+    //             "rotation": [0, 0, 0],
+    //             "scale": [2, 2, 2],
+    //             "components": [
+    //                 {
+    //                     "type": "Mesh Renderer",
+    //                     "mesh": "building",
+    //                     "material": "glass"
+    //                 }
+    //             ]
+    //         },
+    //         {
+    //             "position": [2, 1, 0],
+    //             "rotation": [0, 90, 0],
+    //             "scale": [2, 2, 2],
+    //             "components": [
+    //                 {
+    //                     "type": "Mesh Renderer",
+    //                     "mesh": "building",
+    //                     "material": "glass"
+    //                 }
+    //             ]
+    //         },
+    //         {
+    //             "position": [-2, 1, 0],
+    //             "rotation": [0, 90, 0],
+    //             "scale": [2, 2, 2],
+    //             "components": [
+    //                 {
+    //                     "type": "Mesh Renderer",
+    //                     "mesh": "building",
+    //                     "material": "glass"
+    //                 }
+    //             ]
+    //         },
+    //         {
+    //             "position": [0, 3, 0],
+    //             "rotation": [90, 0, 0],
+    //             "scale": [2, 2, 2],
+    //             "components": [
+    //                 {
+    //                     "type": "Mesh Renderer",
+    //                     "mesh": "building",
+    //                     "material": "glass"
+    //                 }
+    //             ]
+    //         },
+    //         {
+    //             "position": [0, 10, 0],
+    //             "rotation": [45, 45, 0],
+    //             "scale": [5, 5, 5],
+    //             "components": [
+    //                 {
+    //                     "type": "Mesh Renderer",
+    //                     "mesh": "sphere",
+    //                     "material": "moon"
+    //                 },
+    //                 {
+    //                     "type": "Movement",
+    //                     "angularVelocity": [0, 90, 0]
+    //                 }
+    //             ]
+    //         }
             
         ]
     }
