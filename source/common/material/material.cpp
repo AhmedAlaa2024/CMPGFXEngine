@@ -73,4 +73,81 @@ namespace our {
         sampler = AssetLoader<Sampler>::get(data.value("sampler", ""));
     }
 
+    void LitMaterial::setup() const {
+        // should call the setup of its parent (TintedMaterial)
+        Material::setup();
+        // activate texture unit 0
+        glActiveTexture(GL_TEXTURE0);
+        // check if texture and sampler aren't null
+        if (this->albedo && this->sampler) {
+            // bind texture to the activated texture unit
+            albedo->bind();
+            // bind sampler to texture unit 0 which it will sample from, bind(texture unit index to be bound to)
+            sampler->bind(0);
+        }
+        // send the unit number to the uniform variable "material.albedo"
+        shader->set("material.albedo",0);
+
+        // activate texture unit 1
+        glActiveTexture(GL_TEXTURE1);
+        // check if texture and sampler aren't null
+        if (this->specular && this->sampler) {
+            // bind texture to the activated texture unit
+            specular->bind();
+            // bind sampler to texture unit 1 which it will sample from, bind(texture unit index to be bound to)
+            sampler->bind(1);
+        }
+        // send the unit number to the uniform variable "material.specular"
+        shader->set("material.specular",1);
+
+        // activate texture unit 2
+        glActiveTexture(GL_TEXTURE2);
+        // check if texture and sampler aren't null
+        if (this->roughness && this->sampler) {
+            // bind texture to the activated texture unit
+            roughness->bind();
+            // bind sampler to texture unit 2 which it will sample from, bind(texture unit index to be bound to)
+            sampler->bind(2);
+        }
+        // send the unit number to the uniform variable "material.roughness"
+        shader->set("material.roughness",2);
+
+        // activate texture unit 3
+        glActiveTexture(GL_TEXTURE3);
+        // check if texture and sampler aren't null
+        if (this->ao && this->sampler) {
+            // bind texture to the activated texture unit
+            ao->bind();
+            // bind sampler to texture unit 3 which it will sample from, bind(texture unit index to be bound to)
+            sampler->bind(3);
+        }
+        // send the unit number to the uniform variable "material.ambient_occlusion"
+        shader->set("material.ambient_occlusion",3);
+
+        // activate texture unit 4
+        glActiveTexture(GL_TEXTURE4);
+        // check if texture and sampler aren't null
+        if (this->emissive && this->sampler) {
+            // bind texture to the activated texture unit
+            emissive->bind();
+            // bind sampler to texture unit 3 which it will sample from, bind(texture unit index to be bound to)
+            sampler->bind(4);
+        }
+        // send the unit number to the uniform variable "material.ambient_occlusion"
+        shader->set("material.emissive",4);
+    }
+
+    // This function read the material data from a json object
+    void LitMaterial::deserialize(const nlohmann::json& data){
+        Material::deserialize(data);
+        if(!data.is_object()) return;
+        albedo = AssetLoader<Texture2D>::get(data.value("albedo", ""));
+        specular = AssetLoader<Texture2D>::get(data.value("specular", ""));
+        roughness = AssetLoader<Texture2D>::get(data.value("roughness", ""));
+        ao = AssetLoader<Texture2D>::get(data.value("ao", ""));
+        emissive = AssetLoader<Texture2D>::get(data.value("emissive", ""));
+        sampler = AssetLoader<Sampler>::get(data.value("sampler", ""));
+    }
+
+
 }
