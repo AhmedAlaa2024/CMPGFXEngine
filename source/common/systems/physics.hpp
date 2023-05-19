@@ -19,8 +19,6 @@ namespace our
       // For each entity in the world
       for (auto entity : world->getEntities())
       {
-        std::cout << "PhysicsSystem: " << entity->name << std::endl;
-        // std::cout << "PhysicsSystem::update: " << entity->name << std::endl;
         // Get the physics component if it exists
         PhysicsComponent *physics = entity->getComponent<PhysicsComponent>();
         MovementComponent *movement = entity->getComponent<MovementComponent>();
@@ -28,27 +26,15 @@ namespace our
         // If the physics component exists
         if (physics)
         {
-          // Update the linear and angular velocity based on the linear and angular acceleration, mass, and delta time
-          if (!physics->isStatic)
-          {
-
-            // Apply linear and angular acceleration
-            physics->linearAcceleration += physics->gravity;
-            movement->linearVelocity += physics->linearAcceleration * deltaTime;
-            movement->angularVelocity += physics->angularAcceleration * deltaTime;
-
-            // Apply friction
-            glm::vec3 frictionForce = -physics->friction * movement->linearVelocity;
-            physics->linearAcceleration += frictionForce / physics->mass;
-
-            // Apply collision if the entity is collidable and moving
-            if(physics->isCollidable && movement->linearVelocity != glm::vec3(0,0,0)){
-                movement->linearVelocity *= -physics->collisionRestitution;
+          std::cout << "Physics component exists" << std::endl;
+          for (auto collidedEntity : world->getEntities()) {
+            if (entity == collidedEntity) continue;
+            PhysicsComponent *collidedPhysics = collidedEntity->getComponent<PhysicsComponent>();
+            float distance = glm::distance(entity->localTransform.position, collidedEntity->localTransform.position);
+            if (distance < 10) {
+              std::cout << "Collision occured between: " << entity->name << " and " << collidedEntity->name << std::endl;
             }
-
-            // Update position and rotation based on velocity
-            entity->localTransform.position += movement->linearVelocity * deltaTime;
-            entity->localTransform.rotation += movement->angularVelocity * deltaTime;
+            std::cout << "Distance: " << distance << std::endl;
           }
         }
       }

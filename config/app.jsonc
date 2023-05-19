@@ -38,7 +38,6 @@
                 "albedo": "assets/textures/albedo.jpg",
                 "specular": "assets/textures/specular.jpg",
                 "ambient_occlusion": "assets/textures/ambient_occlusion.jpg",
-                "emissive":"assets/textures/emissive.jpg",
                 "roughness":"assets/textures/roughness.jpg",
                 "gun": "assets/textures/Gun.png",
                 "enemy":"assets/textures/TP_Vampire_S0_DF.png",
@@ -258,21 +257,6 @@
                     }
                 ]
             },
-            // {
-            //     "rotation": [-45, 0, 0],
-            //     "components": [
-            //         {
-            //             "type": "Mesh Renderer",
-            //             "mesh": "monkey",
-            //             "material": "monkey"
-            //         },
-            //         {
-            //             "type": "Movement",
-            //             "linearVelocity": [0, 0.1, 0],
-            //             "angularVelocity": [0, 45, 0]
-            //         }
-            //     ]
-            // },
             // ====================================================================ground===================================================//
             // ====================================horizontal in camera
             {"name":"ground","position": [0, 0, 0],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
@@ -360,71 +344,6 @@
 
             {"name":"ground","position": [126, 0, -100],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
             {"name":"ground","position": [126, 0, 100],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
-
-            //  //=======================================horizontal 6
-            //  {"name":"ground","position": [0, 0, -120],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
-            //  {"name":"ground","position": [0, 0, 120],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
- 
-            //  {"name":"ground","position": [-63, 0, -120],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
-            //  {"name":"ground","position": [-63, 0, 120],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
- 
-            //  {"name":"ground","position": [63, 0, -120],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
-            //  {"name":"ground","position": [63, 0, 120],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
- 
-            //  {"name":"ground","position": [-126, 0, -120],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
-            //  {"name":"ground","position": [-126, 0, 120],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
- 
-            //  {"name":"ground","position": [126, 0, -120],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
-            //  {"name":"ground","position": [126, 0, 120],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
- 
-            //  //=======================================horizontal 7
-            //  {"name":"ground","position": [0, 0, -140],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
-            //  {"name":"ground","position": [0, 0, 140],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
- 
-            //  {"name":"ground","position": [-63, 0, -140],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
-            //  {"name":"ground","position": [-63, 0, 140],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
- 
-            //  {"name":"ground","position": [63, 0, -140],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
-            //  {"name":"ground","position": [63, 0, 140],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
- 
-            //  {"name":"ground","position": [-126, 0, -140],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
-            //  {"name":"ground","position": [-126, 0, 140],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
- 
-            //  {"name":"ground","position": [126, 0, -140],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
-            //  {"name":"ground","position": [126, 0, 140],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
- 
-            // //=======================================horizontal 8
-            // {"name":"ground","position": [0, 0, -160],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
-            // {"name":"ground","position": [0, 0, 160],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
-
-            // {"name":"ground","position": [-63, 0, -160],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
-            // {"name":"ground","position": [-63, 0, 160],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
-
-            // {"name":"ground","position": [63, 0, -160],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
-            // {"name":"ground","position": [63, 0, 160],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
-
-            // {"name":"ground","position": [-126, 0, -160],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
-            // {"name":"ground","position": [-126, 0, 160],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
-
-            // {"name":"ground","position": [126, 0, -160],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
-            // {"name":"ground","position": [126, 0, 160],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
-
-            // //=======================================horizontal 9
-            // {"name":"ground","position": [0, 0, -180],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
-            // {"name":"ground","position": [0, 0, 180],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
-
-            // {"name":"ground","position": [-63, 0, -180],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
-            // {"name":"ground","position": [-63, 0, 180],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
-
-            // {"name":"ground","position": [63, 0, -180],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
-            // {"name":"ground","position": [63, 0, 180],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
-
-            // {"name":"ground","position": [-126, 0, -180],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
-            // {"name":"ground","position": [-126, 0, 180],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
-
-            // {"name":"ground","position": [126, 0, -180],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
-            // {"name":"ground","position": [126, 0, 180],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [ {"type": "Mesh Renderer", "mesh": "plane","material": "grass"}] },
-
             //====================================================================enemies=====================================================//
             {
                 "components": [
@@ -435,7 +354,7 @@
                     }
                 ]
             },
-            {               
+            {
                 "position": [0, 0, 18],  
                 "components": [
                 {
@@ -517,16 +436,16 @@
             },
             //======================================================================building======================================================================//
            //================front
-            {"name":"building","position":[5,3.5,-45],"rotation":[0,90,0],"scale":[0.5,0.5,0.5],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},
-            {"name":"building","position":[-5,3.5,-9],"rotation":[0,90,0],"scale":[0.5,0.5,0.5],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},
-            {"name":"building","position":[-35,3.5,-25],"rotation":[0,90,0],"scale":[0.5,0.5,0.5],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},
-            {"name":"building","position":[35,3.5,-9],"rotation":[0,90,0],"scale":[0.5,0.5,0.5],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},
-            {"name":"building","position":[50,3.5,-45],"rotation":[0,90,0],"scale":[0.5,0.5,0.5],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},
+            {"name":"building","position":[5,3.5,-45],"rotation":[0,90,0],"scale":[0.5,0.5,0.5],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}, {"type": "Phsyics", "isCollidable": "true", "collisionRestitution": 10.0}]},
+            {"name":"building","position":[-5,3.5,-9],"rotation":[0,90,0],"scale":[0.5,0.5,0.5],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}, {"type": "Phsyics", "isCollidable": "true", "collisionRestitution": 10.0}]},
+            {"name":"building","position":[-35,3.5,-25],"rotation":[0,90,0],"scale":[0.5,0.5,0.5],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}, {"type": "Phsyics", "isCollidable": "true", "collisionRestitution": 10.0}]},
+            {"name":"building","position":[35,3.5,-9],"rotation":[0,90,0],"scale":[0.5,0.5,0.5],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}, {"type": "Phsyics", "isCollidable": "true", "collisionRestitution": 10.0}]},
+            {"name":"building","position":[50,3.5,-45],"rotation":[0,90,0],"scale":[0.5,0.5,0.5],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}, {"type": "Phsyics", "isCollidable": "true", "collisionRestitution": 10.0}]},
             //=================back
-            {"name":"building","position":[5,3.5,45],"rotation":[0,90,0],"scale":[0.5,0.5,0.5],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},
-            {"name":"building","position":[-35,3.5,25],"rotation":[0,90,0],"scale":[0.5,0.5,0.5],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},
-            {"name":"building","position":[35,3.5,9],"rotation":[0,90,0],"scale":[0.5,0.5,0.5],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},
-            {"name":"building","position":[50,3.5,45],"rotation":[0,90,0],"scale":[0.5,0.5,0.5],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}]},
+            {"name":"building","position":[5,3.5,45],"rotation":[0,90,0],"scale":[0.5,0.5,0.5],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}, {"type": "Phsyics", "isCollidable": "true", "collisionRestitution": 10.0}]},
+            {"name":"building","position":[-35,3.5,25],"rotation":[0,90,0],"scale":[0.5,0.5,0.5],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}, {"type": "Phsyics", "isCollidable": "true", "collisionRestitution": 10.0}]},
+            {"name":"building","position":[35,3.5,9],"rotation":[0,90,0],"scale":[0.5,0.5,0.5],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}, {"type": "Phsyics", "isCollidable": "true", "collisionRestitution": 10.0}]},
+            {"name":"building","position":[50,3.5,45],"rotation":[0,90,0],"scale":[0.5,0.5,0.5],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building"}, {"type": "Phsyics", "isCollidable": "true", "collisionRestitution": 10.0}]},
             //=======================================================================================wall=================================================================//
                 //=============================rigth side of the fences===============================//
                 {"name":"wall","position": [126,2,0],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
