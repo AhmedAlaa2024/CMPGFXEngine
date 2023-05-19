@@ -129,6 +129,7 @@
         },
         "world":[
             {
+                "name": "camera",
                 "position": [0, 0, 10],
                 "components": [
                     {
@@ -148,13 +149,24 @@
                                 "type": "Mesh Renderer",
                                 "mesh": "cube",
                                 "material": "metal"
+                            },
+                            {
+                                "type": "Physics",
+                                "linearAcceleration": [0, 0, 0],
+                                "angularAcceleration": [0, 0, 0],
+                                "mass": 1,
+                                "isStatic": false,
+                                "friction": 0.0,
+                                "collisionRestitution": 0.0,
+                                "gravity": [0, -9.8, 0]
                             }
                         ]
                     }
                 ]
             },
             {
-                "rotation": [-45, 0, 0],
+                "name": "monkey",
+                "rotation": [0, 0, 0],
                 "components": [
                     {
                         "type": "Mesh Renderer",
@@ -163,12 +175,23 @@
                     },
                     {
                         "type": "Movement",
-                        "linearVelocity": [0, 0.1, 0],
-                        "angularVelocity": [0, 45, 0]
+                        "linearVelocity": [0, 0, 0],
+                        "angularVelocity": [0, 0, 0]
+                    },
+                    {
+                        "type": "Physics",
+                        "linearAcceleration": [0, 0, 0],
+                        "angularAcceleration": [0, 0, 0],
+                        "mass": 1,
+                        "isStatic": false,
+                        "friction": 0.0,
+                        "collisionRestitution": 0.0,
+                        "gravity": [0, -9.8, 0]
                     }
                 ]
             },
             {
+                "name": "Grass plane",
                 "position": [0, -1, 0],
                 "rotation": [-90, 0, 0],
                 "scale": [10, 10, 1],
@@ -177,6 +200,16 @@
                         "type": "Mesh Renderer",
                         "mesh": "plane",
                         "material": "grass"
+                    },
+                    {
+                        "type": "Physics",
+                        "linearAcceleration": [0, 0, 0],
+                        "angularAcceleration": [0, 0, 0],
+                        "mass": 1,
+                        "isStatic": false,
+                        "friction": 0.0,
+                        "collisionRestitution": 0.0,
+                        "gravity": [0, -9.8, 0]
                     }
                 ]
             },
@@ -189,6 +222,16 @@
                         "type": "Mesh Renderer",
                         "mesh": "plane",
                         "material": "glass"
+                    },
+                    {
+                        "type": "Physics",
+                        "linearAcceleration": [0, 0, 0],
+                        "angularAcceleration": [0, 0, 0],
+                        "mass": 1,
+                        "isStatic": false,
+                        "friction": 0.0,
+                        "collisionRestitution": 0.0,
+                        "gravity": [0, -9.8, 0]
                     }
                 ]
             },
@@ -201,6 +244,16 @@
                         "type": "Mesh Renderer",
                         "mesh": "plane",
                         "material": "glass"
+                    },
+                    {
+                        "type": "Physics",
+                        "linearAcceleration": [0, 0, 0],
+                        "angularAcceleration": [0, 0, 0],
+                        "mass": 1,
+                        "isStatic": false,
+                        "friction": 0.0,
+                        "collisionRestitution": 0.0,
+                        "gravity": [0, -9.8, 0]
                     }
                 ]
             },
@@ -213,6 +266,16 @@
                         "type": "Mesh Renderer",
                         "mesh": "plane",
                         "material": "glass"
+                    },
+                    {
+                        "type": "Physics",
+                        "linearAcceleration": [0, 0, 0],
+                        "angularAcceleration": [0, 0, 0],
+                        "mass": 1,
+                        "isStatic": false,
+                        "friction": 0.0,
+                        "collisionRestitution": 0.0,
+                        "gravity": [0, -9.8, 0]
                     }
                 ]
             },
@@ -225,6 +288,16 @@
                         "type": "Mesh Renderer",
                         "mesh": "plane",
                         "material": "glass"
+                    },
+                    {
+                        "type": "Physics",
+                        "linearAcceleration": [0, 0, 0],
+                        "angularAcceleration": [0, 0, 0],
+                        "mass": 1,
+                        "isStatic": false,
+                        "friction": 0.0,
+                        "collisionRestitution": 0.0,
+                        "gravity": [0, -9.8, 0]
                     }
                 ]
             },
@@ -237,6 +310,16 @@
                         "type": "Mesh Renderer",
                         "mesh": "plane",
                         "material": "glass"
+                    },
+                    {
+                        "type": "Physics",
+                        "linearAcceleration": [0, 0, 0],
+                        "angularAcceleration": [0, 0, 0],
+                        "mass": 1,
+                        "isStatic": false,
+                        "friction": 0.0,
+                        "collisionRestitution": 0.0,
+                        "gravity": [0, -9.8, 0]
                     }
                 ]
             },
@@ -253,6 +336,16 @@
                     {
                         "type": "Movement",
                         "angularVelocity": [0, 90, 0]
+                    },
+                    {
+                        "type": "Physics",
+                        "linearAcceleration": [0, 0, 0],
+                        "angularAcceleration": [0, 0, 0],
+                        "mass": 1,
+                        "isStatic": false,
+                        "friction": 0.0,
+                        "collisionRestitution": 0.0,
+                        "gravity": [0, -9.8, 0]
                     }
                 ]
             }
