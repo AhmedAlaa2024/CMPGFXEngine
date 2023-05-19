@@ -53,7 +53,7 @@
                 "gun": "assets/models/Gun.obj",
                 "enemy":"assets/models/ReynaNoTextures.obj",
                 "building":"assets/models/house.obj",
-                "wall":"assets/models/wall.obj",
+                "wall":"assets/models/wall.obj"
             },
             "samplers":{
                 "default":{},
