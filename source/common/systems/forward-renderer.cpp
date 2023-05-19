@@ -141,6 +141,7 @@ namespace our
         CameraComponent *camera = nullptr;
         opaqueCommands.clear();
         transparentCommands.clear();
+        lightSources.clear();
         for (auto entity : world->getEntities())
         {
             // If we hadn't found a camera yet, we look for a camera in this entity
@@ -166,6 +167,11 @@ namespace our
                     opaqueCommands.push_back(command);
                 }
             }
+            // if this entity has a light component store it
+            if (auto lightComp = entity->getComponent<LightComponent>(); lightComp)
+            {
+                lightSources.push_back(lightComp);
+            }
         }
 
         // If there is no camera, we return (we cannot render without a camera)
@@ -178,7 +184,7 @@ namespace our
         // It does this by transforming the negative z-axis direction of the camera's local coordinate system
         // into world space using the camera's owner's local-to-world matrix.
         glm::vec3 cameraForward = camera->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, -1.0f, 1.0f);
-        
+
         // Explaination: The following line computes the position of the camera in world space.
         // It does this by inverting the camera's view matrix and then taking the fourth column of the resulting matrix,
         // which represents the translation component of the matrix.
@@ -236,9 +242,55 @@ namespace our
         // (computed as the product of the view-projection matrix and the command's local-to-world matrix), and calls the draw() method of the mesh.
         for (const auto &command : opaqueCommands)
         {
-            command.material->setup();
-            glUniformMatrix4fv(command.material->shader->getUniformLocation("transform"), 1, GL_FALSE, glm::value_ptr(VP * command.localToWorld));
+            
+            if (auto light_material = dynamic_cast<LitMaterial *>(command.material); light_material)
+            {
+                light_material->setup();
 
+                light_material->shader->set("VP", VP);
+                light_material->shader->set("M", command.localToWorld);
+                light_material->shader->set("eye", command.localToWorld * glm::vec4(0, 0, 0, 1));
+                light_material->shader->set("M_IT", glm::transpose(glm::inverse(command.localToWorld)));
+                light_material->shader->set("light_count", (int)lightSources.size());
+
+                light_material->shader->set("sky.top", glm::vec3(0.7, 0.3, 0.8));
+                light_material->shader->set("sky.horizon", glm::vec3(0.7, 0.3, 0.8));
+                light_material->shader->set("sky.bottom", glm::vec3(0.7, 0.3, 0.8));
+
+
+                for (int i = 0; i < (int)lightSources.size(); i++)
+                {
+                    // calculate position and direction of the light source in world
+                    glm::vec3 position = lightSources[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, 0, 1);
+                    glm::vec3 direction = lightSources[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, -1, 0, 0);
+
+                    light_material->shader->set("lights[" + std::to_string(i) + "].type", lightSources[i]->type);
+                    light_material->shader->set("lights[" + std::to_string(i) + "].color", lightSources[i]->color);
+                    light_material->shader->set("lights[" + std::to_string(i) + "].attenuation", lightSources[i]->attenuation);
+
+                    int t = lightSources[i]->type;
+
+                    switch (t)
+                    {
+                    case 0:
+                        light_material->shader->set("lights[" + std::to_string(i) + "].direction", direction);
+                        break;
+                    case 1:
+                        light_material->shader->set("lights[" + std::to_string(i) + "].position", position);
+                        break;
+                    case 2:
+                        light_material->shader->set("lights[" + std::to_string(i) + "].position", position);
+                        light_material->shader->set("lights[" + std::to_string(i) + "].direction", direction);
+                        light_material->shader->set("lights[" + std::to_string(i) + "].cone_angles", lightSources[i]->cone_angles);
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                command.material->setup();
+                glUniformMatrix4fv(command.material->shader->getUniformLocation("transform"), 1, GL_FALSE, glm::value_ptr(VP * command.localToWorld));
+            }
             command.mesh->draw();
         }
 
@@ -286,9 +338,56 @@ namespace our
         // (computed as the product of the view-projection matrix and the command's local-to-world matrix), and calls the draw() method of the mesh.
         for (const auto &command : transparentCommands)
         {
-            command.material->setup();
-            glUniformMatrix4fv(command.material->shader->getUniformLocation("transform"), 1, GL_FALSE, glm::value_ptr(VP * command.localToWorld));
 
+            //command.material->setup();
+            if (auto light_material = dynamic_cast<LitMaterial *>(command.material); light_material)
+            {
+                light_material->setup();
+                
+                light_material->shader->set("VP", VP);
+                light_material->shader->set("M", command.localToWorld);
+                light_material->shader->set("eye", command.localToWorld * glm::vec4(0, 0, 0, 1));
+                light_material->shader->set("M_IT", glm::transpose(glm::inverse(command.localToWorld)));
+                light_material->shader->set("light_count", (int)lightSources.size());
+
+                light_material->shader->set("sky.top", glm::vec3(0.0f, 0.1f, 0.5f));
+                light_material->shader->set("sky.horizon", glm::vec3(0.3f, 0.3f, 0.3f));
+                light_material->shader->set("sky.bottom", glm::vec3(0.1f, 0.1f, 0.1f));
+
+                
+                for (int i = 0; i < (int)lightSources.size(); i++)
+                {
+                    // calculate position and direction of the light source in world
+                    glm::vec3 position = lightSources[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, 0, 1);
+                    glm::vec3 direction = lightSources[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, -1, 0, 0);
+
+                    light_material->shader->set("lights[" + std::to_string(i) + "].type", lightSources[i]->type);
+                    light_material->shader->set("lights[" + std::to_string(i) + "].color", lightSources[i]->color);
+                    light_material->shader->set("lights[" + std::to_string(i) + "].attenuation", lightSources[i]->attenuation);
+
+                    int t = lightSources[i]->type;
+
+                    switch (t)
+                    {
+                    case 0:
+                        light_material->shader->set("lights[" + std::to_string(i) + "].direction", direction);
+                        break;
+                    case 1:
+                        light_material->shader->set("lights[" + std::to_string(i) + "].position", position);
+                        break;
+                    case 2:
+                        light_material->shader->set("lights[" + std::to_string(i) + "].position", position);
+                        light_material->shader->set("lights[" + std::to_string(i) + "].direction", direction);
+                        light_material->shader->set("lights[" + std::to_string(i) + "].cone_angles", lightSources[i]->cone_angles);
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                command.material->setup();
+                glUniformMatrix4fv(command.material->shader->getUniformLocation("transform"), 1, GL_FALSE, glm::value_ptr(VP * command.localToWorld));
+            }
             command.mesh->draw();
         }
 
