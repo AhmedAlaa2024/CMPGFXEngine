@@ -262,7 +262,7 @@ namespace our
                 {
                     // calculate position and direction of the light source in world
                     glm::vec3 position = lightSources[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, 0, 1);
-                    glm::vec3 direction = lightSources[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0,1,-1, 0);
+                    glm::vec3 direction = lightSources[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0,0,-1, 0);
 
                     light_material->shader->set("lights[" + std::to_string(i) + "].type", lightSources[i]->type);
                     light_material->shader->set("lights[" + std::to_string(i) + "].color", lightSources[i]->color);
@@ -359,7 +359,7 @@ namespace our
                 {
                     // calculate position and direction of the light source in world
                     glm::vec3 position = lightSources[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, 0, 1);
-                    glm::vec3 direction = lightSources[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0,1,-1, 0);
+                    glm::vec3 direction = lightSources[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0,0,-1, 0);
 
                     light_material->shader->set("lights[" + std::to_string(i) + "].type", lightSources[i]->type);
                     light_material->shader->set("lights[" + std::to_string(i) + "].color", lightSources[i]->color);
