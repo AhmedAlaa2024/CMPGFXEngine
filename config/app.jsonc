@@ -177,8 +177,8 @@
                     },
                     "albedo": "moon",
                     "specular": "white",
-                    "roughness": "gray",
-                    "emissive": "roughness",
+                    "roughness": "roughness",
+                    "emissive": "black",
                     "ambient_occlusion": "moon",
                     "sampler": "default"
                 },
@@ -488,12 +488,13 @@
             },//rotations: left -z, right +z front +x
             {
                 //"rotation": [0, -1, -1],
-                "position": [17, 15, -6],
+                //"position": [17, 15, -10],
+                "position": [23, 23, -15],
                 "components": [
                 {
                     "type": "light",
                     "lighttype": "POINT",
-                    "color": [0.25,0.25,0.25],
+                    "color": [0.5,0.5,0.5],
                     "attenuation": [0.001, 0.001, 0.001]
                 }
                 ]
