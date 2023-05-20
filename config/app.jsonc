@@ -31,7 +31,7 @@
             },
             "textures":{
                 "moon": "assets/textures/moon.jpg",
-                "grass": "assets/textures/diffuse.jpg",
+                "grass": "assets/textures/grass_ground_d.jpg",
                 "wood": "assets/textures/wood.jpg",
                 "glass": "assets/textures/glass-panels.png",
                 "monkey": "assets/textures/monkey.png",
@@ -46,7 +46,8 @@
                 "wall":"assets/textures/wall_brick.jpg",
                 "white":"assets/textures/white.png",
                 "black":"assets/textures/black.png",
-                "galaxy_gradient":"assets/textures/galaxy_gradient.jpg"
+                "galaxy_gradient":"assets/textures/galaxy_gradient.jpg",
+                "gray":"assets/textures/gray.png"
             },
             "meshes":{
                 "cube": "assets/models/cube.obj",
@@ -128,7 +129,7 @@
                     },
                     "albedo": "grass",
                     "specular": "white",
-                    "roughness": "roughness",
+                    "roughness": "gray",
                     "emissive": "black",
                     "ambient_occlusion": "grass",
                     "sampler": "default"
@@ -163,6 +164,24 @@
                     "texture": "moon",
                     "sampler": "default"
                 },
+                "moon_light":{
+                    "type": "lit",
+                    "shader": "lit",
+                    "pipelineState": {
+                        "faceCulling":{
+                            "enabled": false
+                        },
+                        "depthTesting":{
+                            "enabled": true
+                        }
+                    },
+                    "albedo": "moon",
+                    "specular": "white",
+                    "roughness": "gray",
+                    "emissive": "roughness",
+                    "ambient_occlusion": "moon",
+                    "sampler": "default"
+                },
                 "light":{
                     "type": "lit",
                     "shader": "lit",
@@ -175,8 +194,8 @@
                         }
                     },
                     "albedo": "albedo",
-                    "specular": "specular",
-                    "roughness": "roughness",
+                    "specular": "white",
+                    "roughness": "gray",
                     "ao": "ambient_occlusion",
                     "emissive": "emissive",
                     "sampler": "default"
@@ -225,7 +244,7 @@
                     },
                     "albedo": "enemy",
                     "specular": "white",
-                    "roughness": "roughness",
+                    "roughness": "gray",
                     "emissive": "black",
                     "ambient_occlusion": "enemy",
                     "sampler": "default"
@@ -258,7 +277,7 @@
                     },
                     "albedo": "building",
                     //"specular": "white",
-                    "roughness": "roughness",
+                    "roughness": "gray",
                     "emissive": "black",
                     "ambient_occlusion": "building",
                     "sampler": "default"
@@ -314,7 +333,7 @@
                         ]
                     },
                     {
-                            "components": [
+                        "components": [
                             {
                                 "type": "light",
                                 "lighttype": "SPOT",
@@ -324,8 +343,8 @@
                                 "cone_angles.out": 10
                             }
                         ]
-                        }
-                    ]
+                    }
+                ]
             },
              //====================================================================ground===================================================//
             //=======================================horizontal in camera
@@ -392,50 +411,93 @@
             {"name":"building","position":[-35,3.5,25],"rotation":[0,90,0],"scale":[0.5,0.5,0.5],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building_light"}]},
             {"name":"building","position":[35,3.5,9],"rotation":[0,90,0],"scale":[0.5,0.5,0.5],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building_light"}]},
             {"name":"building","position":[50,3.5,45],"rotation":[0,90,0],"scale":[0.5,0.5,0.5],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building_light"}]},
-            //=====================================================================wall=================================================================//
-            //==================================================================rigth side of the fences===============================//
-            {"name":"wall","position": [126,2,0],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
-            {"name":"wall","position": [126,2,32],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
-            {"name":"wall","position": [126,2,-32],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
-            {"name":"wall","position": [126,2,64],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
-            {"name":"wall","position": [126,2,-64],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
-            {"name":"wall","position": [126,2,96],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
-            {"name":"wall","position": [126,2,-96],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
-           //=================================================left side of the fences===============================//
-            {"name":"wall","position": [-126,2,0],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
-            {"name":"wall","position": [-126,2,32],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
-            {"name":"wall","position": [-126,2,-32],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
-            {"name":"wall","position": [-126,2,64],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
-            {"name":"wall","position": [-126,2,-64],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
-            {"name":"wall","position": [-126,2,96],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
-            {"name":"wall","position": [-126,2,-96],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
-           //=================================================front side of the fences====================================================//
-            {"name":"wall","position": [0,2,-85],"rotation": [0, 180, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
-            {"name":"wall","position": [31,2,-85],"rotation": [0, 180, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
-            {"name":"wall","position": [-31,2,-85],"rotation": [0, 180, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
-            {"name":"wall","position": [63,2,-85],"rotation": [0, 180, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
-            {"name":"wall","position": [-63,2,-85],"rotation": [0, 180, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
-            {"name":"wall","position": [93,2,-85],"rotation": [0, 180, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
-            {"name":"wall","position": [-93,2,-85],"rotation": [0, 180, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
-            {"name":"wall","position": [126,2,-85],"rotation": [0, 180, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
-            {"name":"wall","position": [-126,2,-85],"rotation": [0, 180, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
-            //=======================================================================Moon======================================================================//   
-            {"name": "moon","position": [23, 23, -15],"rotation": [45, 45, 0],"scale": [3,3,3],"components": [{"type": "Mesh Renderer","mesh": "sphere","material": "moon"}]},
+            //=======================================================================================wall=================================================================//
+                //=============================rigth side of the fences===============================//
+                {"name":"wall","position": [126,2,0],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
+                {"name":"wall","position": [126,2,20],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
+                {"name":"wall","position": [126,2,-20],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
+                {"name":"wall","position": [126,2,40],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
+                {"name":"wall","position": [126,2,-40],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
+                {"name":"wall","position": [126,2,60],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
+                {"name":"wall","position": [126,2,-60],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
+                {"name":"wall","position": [126,2,80],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
+                {"name":"wall","position": [126,2,-80],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
+                {"name":"wall","position": [126,2,100],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
+                {"name":"wall","position": [126,2,-100],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
+                {"name":"wall","position": [126,2,120],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
+                {"name":"wall","position": [126,2,-120],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
+                {"name":"wall","position": [126,2,140],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
+                {"name":"wall","position": [126,2,-140],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
+                {"name":"wall","position": [126,2,160],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
+                {"name":"wall","position": [126,2,-160],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
+                {"name":"wall","position": [126,2,180],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
+                {"name":"wall","position": [126,2,-180],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
+
+                //=============================left side of the fences===============================//
+                {"name":"wall","position": [-126,2,0],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
+                {"name":"wall","position": [-126,2,20],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
+                {"name":"wall","position": [-126,2,-20],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
+                {"name":"wall","position": [-126,2,40],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
+                {"name":"wall","position": [-126,2,-40],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
+                {"name":"wall","position": [-126,2,60],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
+                {"name":"wall","position": [-126,2,-60],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
+                {"name":"wall","position": [-126,2,80],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
+                {"name":"wall","position": [-126,2,-80],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
+                {"name":"wall","position": [-126,2,100],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
+                {"name":"wall","position": [-126,2,-100],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
+                {"name":"wall","position": [-126,2,120],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
+                {"name":"wall","position": [-126,2,-120],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
+                {"name":"wall","position": [-126,2,140],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
+                {"name":"wall","position": [-126,2,-140],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
+                {"name":"wall","position": [-126,2,160],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
+                {"name":"wall","position": [-126,2,-160],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
+                {"name":"wall","position": [-126,2,180],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
+                {"name":"wall","position": [-126,2,-180],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
+                //=============================front side of the fences====================================================//
+                {"name":"wall","position": [0,2,-85],"rotation": [0, 180, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
+                {"name":"wall","position": [31,2,-85],"rotation": [0, 180, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
+                {"name":"wall","position": [-31,2,-85],"rotation": [0, 180, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
+                {"name":"wall","position": [64,2,-85],"rotation": [0, 180, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
+                {"name":"wall","position": [-64,2,-85],"rotation": [0, 180, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
+                {"name":"wall","position": [93,2,-85],"rotation": [0, 180, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
+                {"name":"wall","position": [-93,2,-85],"rotation": [0, 180, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
+                {"name":"wall","position": [126,2,-85],"rotation": [0, 180, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
+                {"name":"wall","position": [-126,2,-85],"rotation": [0, 180, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},   
             {
-                // "rotation": [45,45 , 45],
-                "components": [{"type": "light","lighttype": "DIRECTIONAL","color": [0.1,0.1,0.1]}]}
-            // {
-            //     "rotation": [45, 45, 45],
-            //     "position":[-30,3,-1],
-            //     "components": [
-            //         {
-            //             "type": "light",
-            //             "lighttype": "POINT",
-            //             "color": [1,1,1],
-            //             "attenuation": [0.001, 0.001, 0.001]
-            //         }
-            //     ]
-            // }
+                "name": "moon",
+                "position": [23, 23, -15],
+                "rotation": [45, 45, 0],
+                "scale": [3,3,3],
+                "components": [
+                    {
+                        "type": "Mesh Renderer",
+                        "mesh": "sphere",
+                        "material": "moon"
+                    }
+                ]
+            },
+            {
+                "rotation": [-45, 45, 0],
+                "components": [
+                    {
+                        "type": "light",
+                        "lighttype": "DIRECTIONAL",
+                        "color": [0.8,0.8,0.8]  
+                    }
+                ]
+            },//rotations: left -z, right +z front +x
+            {
+                //"rotation": [0, -1, -1],
+                "position": [17, 15, -6],
+                "components": [
+                {
+                    "type": "light",
+                    "lighttype": "POINT",
+                    "color": [0.25,0.25,0.25],
+                    "attenuation": [0.001, 0.001, 0.001]
+                }
+                ]
+            }
            ]
     }
 }

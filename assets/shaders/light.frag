@@ -101,9 +101,9 @@ void main(){
         vec3 reflected=reflect(-world_to_light_dir,normal);
         vec3 computed_specular=light.color*specular*phong(reflected,view,shininess);
         
-        color+=(computed_diffuse+computed_specular)*attenuation;
+       color+=(computed_diffuse+computed_specular)*attenuation;
     }
     
     frag_color=vec4(color,1.);
-    // frag_color = vec4(fs_in.normal, 1.0);
+    //frag_color = vec4(fs_in.normal, 1.0);
 }
