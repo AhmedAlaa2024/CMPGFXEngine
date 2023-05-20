@@ -418,7 +418,7 @@ namespace our
             //////////// FOR FOG///////////////////////////////////////////
 
             glBindVertexArray(postProcessVertexArray);
-            //////////// FOR Distortion ///////////////////////////////////////////
+            // ////////// FOR Distortion ///////////////////////////////////////////
             // if (additionalTexture)
             // {
             //     glActiveTexture(GL_TEXTURE1);
@@ -427,7 +427,7 @@ namespace our
             //     postprocessMaterial->shader->set("additional_sampler", 1);
             //     postprocessMaterial->shader->set("effect_power", effect_power); // TODO
             // }
-            //////////// FOR Distortion ///////////////////////////////////////////
+            // ////////// FOR Distortion ///////////////////////////////////////////
 
             //////////// FOR Tone ///////////////////////////////////////////
 

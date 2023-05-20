@@ -444,10 +444,6 @@
                 {"name":"wall","position": [155,2,-60],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall_light"}]},
                 {"name":"wall","position": [155,2,90],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall_light"}]},
                 {"name":"wall","position": [155,2,-90],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall_light"}]},
-                // {"name":"wall","position": [155,2,120],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
-                // {"name":"wall","position": [155,2,-120],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
-                // {"name":"wall","position": [155,2,140],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
-                // {"name":"wall","position": [155,2,-140],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
                 //=============================left side of the fences===============================//
                 {"name":"wall","position": [-155,2,0],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall_light"}]},
                 {"name":"wall","position": [-155,2,30],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall_light"}]},
@@ -456,10 +452,6 @@
                 {"name":"wall","position": [-155,2,-60],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall_light"}]},
                 {"name":"wall","position": [-155,2,90],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall_light"}]},
                 {"name":"wall","position": [-155,2,-90],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall_light"}]},
-                // {"name":"wall","position": [-155,2,120],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
-                // {"name":"wall","position": [-155,2,-120],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
-                // {"name":"wall","position": [-155,2,140],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
-                // {"name":"wall","position": [-155,2,-140],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall"}]},
                 //=============================front side of the fences====================================================//
                 {"name":"wall","position": [0,2,-110],"rotation": [0, 180, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall_light"}]},
                 {"name":"wall","position": [30,2,-110],"rotation": [0, 180, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall_light"}]},
