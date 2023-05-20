@@ -104,7 +104,8 @@ namespace our
             {
                 additionalTexture = texture_utils::loadImage(config.value<std::string>("addedTex", ""));
             }
-            // effect_power = config.value("effect_power", effect_power);
+            effect_power = config.value("effect_power", effect_power);
+            exposure = config.value("exposure", exposure);
             fog_power = config.value("fog_power", fog_power);
             fog_distance = config.value("fog_distance", fog_distance);
 
@@ -403,21 +404,21 @@ namespace our
             glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
             // TODO: (Req 11) Setup the postprocess material and draw the fullscreen triangle
             postprocessMaterial->setup();
-
+            //////////// FOR FOG///////////////////////////////////////////
             glActiveTexture(GL_TEXTURE1);
-            //ShaderProgram* shader=postprocessMaterial->shader;
             depthTarget->bind();
             postprocessMaterial->sampler->bind(1);
             postprocessMaterial->shader->set("depth_sampler", 1);
-            postprocessMaterial->shader->set("inverse_projection",glm::inverse(camera->getProjectionMatrix(windowSize)));
+            postprocessMaterial->shader->set("inverse_projection", glm::inverse(camera->getProjectionMatrix(windowSize)));
 
             postprocessMaterial->shader->set("fog_color", glm::vec3(0.75, 0.5, 0.25));
             postprocessMaterial->shader->set("fog_power", fog_power);
             postprocessMaterial->shader->set("fog_exponent", fog_distance);
-            // postprocessMaterial->shader->use();
             glActiveTexture(GL_TEXTURE0);
+            //////////// FOR FOG///////////////////////////////////////////
 
             glBindVertexArray(postProcessVertexArray);
+            //////////// FOR Distortion ///////////////////////////////////////////
             // if (additionalTexture)
             // {
             //     glActiveTexture(GL_TEXTURE1);
@@ -426,7 +427,13 @@ namespace our
             //     postprocessMaterial->shader->set("additional_sampler", 1);
             //     postprocessMaterial->shader->set("effect_power", effect_power); // TODO
             // }
+            //////////// FOR Distortion ///////////////////////////////////////////
 
+            //////////// FOR Tone ///////////////////////////////////////////
+
+            //     postprocessMaterial->shader->set("exposure", exposure);
+
+            //////////// FOR Tone ///////////////////////////////////////////
             // Specifies the starting index in the enabled arrays.
             // Specifies the number of indices to be rendered.
             glDrawArrays(GL_TRIANGLES, GLint(0), 4);

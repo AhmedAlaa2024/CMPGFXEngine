@@ -54,7 +54,8 @@ namespace our
         float fog_power = 0.01f;
         float fog_distance = 1.0f;
         float effect_power = 0.05f;
-        bool apply = true;
+        float exposure = 1.0f;
+        bool apply = false;
 
     public:
         // Initialize the renderer including the sky and the Postprocessing objects.
@@ -67,14 +68,7 @@ namespace our
 
         void changeApply()
         {
-            if (apply)
-            {
-                apply = false;
-            }
-            else
-            {
-                apply = true;
-            }
+            apply = !apply;
         }
     };
 

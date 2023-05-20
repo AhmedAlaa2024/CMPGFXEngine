@@ -13,8 +13,13 @@
         "renderer":{
             "sky": "assets/textures/sky.jpg",
             "postprocess": "assets/shaders/postprocess/fog.frag",
+            // "postprocess": "assets/shaders/postprocess/distortion.frag",
+            // "postprocess": "assets/shaders/postprocess/tone-mapping.frag",
+            "addedTex":"assets/textures/water-normal.png",
             "fog_power":0.9,
-            "fog_distance":0.05
+            "fog_distance":0.005,
+            "exposure":1.0,
+            "effect_power":0.05
         },
         "assets":{
             "shaders":{
