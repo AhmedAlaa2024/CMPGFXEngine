@@ -12,7 +12,9 @@
     "scene": {
         "renderer":{
             "sky": "assets/textures/sky.jpg",
-            "postprocess": "assets/shaders/postprocess/vignette.frag"
+            "postprocess": "assets/shaders/postprocess/fog.frag",
+            "fog_power":0.9,
+            "fog_distance":0.05
         },
         "assets":{
             "shaders":{

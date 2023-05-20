@@ -100,6 +100,14 @@ namespace our
             postprocessShader->attach(config.value<std::string>("postprocess", ""), GL_FRAGMENT_SHADER);
             postprocessShader->link();
 
+            if (config.contains("addedTex"))
+            {
+                additionalTexture = texture_utils::loadImage(config.value<std::string>("addedTex", ""));
+            }
+            // effect_power = config.value("effect_power", effect_power);
+            fog_power = config.value("fog_power", fog_power);
+            fog_distance = config.value("fog_distance", fog_distance);
+
             // Create a post processing material
             postprocessMaterial = new TexturedMaterial();
             postprocessMaterial->shader = postprocessShader;
@@ -123,7 +131,7 @@ namespace our
             delete skyMaterial;
         }
         // Delete all objects related to post processing
-        if (postprocessMaterial)
+        if (postprocessMaterial && apply)
         {
             glDeleteFramebuffers(1, &postprocessFrameBuffer);
             glDeleteVertexArrays(1, &postProcessVertexArray);
@@ -223,7 +231,7 @@ namespace our
         glDepthMask(GL_TRUE);
 
         // If there is a postprocess material, bind the framebuffer
-        if (postprocessMaterial)
+        if (postprocessMaterial && apply)
         // command.material->setup();
         {
             // TODO: (Req 11) bind the framebuffer
@@ -242,7 +250,7 @@ namespace our
         // (computed as the product of the view-projection matrix and the command's local-to-world matrix), and calls the draw() method of the mesh.
         for (const auto &command : opaqueCommands)
         {
-            
+
             if (auto light_material = dynamic_cast<LitMaterial *>(command.material); light_material)
             {
                 light_material->setup();
@@ -257,12 +265,11 @@ namespace our
                 light_material->shader->set("sky.horizon", glm::vec3(0.7, 0.3, 0.8));
                 light_material->shader->set("sky.bottom", glm::vec3(0.7, 0.3, 0.8));
 
-
                 for (int i = 0; i < (int)lightSources.size(); i++)
                 {
                     // calculate position and direction of the light source in world
                     glm::vec3 position = lightSources[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, 0, 1);
-                    glm::vec3 direction = lightSources[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0,0,-1, 0);
+                    glm::vec3 direction = lightSources[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, -1, 0);
 
                     light_material->shader->set("lights[" + std::to_string(i) + "].type", lightSources[i]->type);
                     light_material->shader->set("lights[" + std::to_string(i) + "].color", lightSources[i]->color);
@@ -339,11 +346,11 @@ namespace our
         for (const auto &command : transparentCommands)
         {
 
-            //command.material->setup();
+            // command.material->setup();
             if (auto light_material = dynamic_cast<LitMaterial *>(command.material); light_material)
             {
                 light_material->setup();
-                
+
                 light_material->shader->set("VP", VP);
                 light_material->shader->set("M", command.localToWorld);
                 light_material->shader->set("eye", command.localToWorld * glm::vec4(0, 0, 0, 1));
@@ -354,12 +361,11 @@ namespace our
                 light_material->shader->set("sky.horizon", glm::vec3(0.3f, 0.3f, 0.3f));
                 light_material->shader->set("sky.bottom", glm::vec3(0.1f, 0.1f, 0.1f));
 
-                
                 for (int i = 0; i < (int)lightSources.size(); i++)
                 {
                     // calculate position and direction of the light source in world
                     glm::vec3 position = lightSources[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, 0, 1);
-                    glm::vec3 direction = lightSources[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0,0,-1, 0);
+                    glm::vec3 direction = lightSources[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, -1, 0);
 
                     light_material->shader->set("lights[" + std::to_string(i) + "].type", lightSources[i]->type);
                     light_material->shader->set("lights[" + std::to_string(i) + "].color", lightSources[i]->color);
@@ -392,12 +398,35 @@ namespace our
         }
 
         // If there is a postprocess material, apply postprocessing
-        if (postprocessMaterial)
+        if (postprocessMaterial && apply)
         { // TODO: (Req 11) Return to the default framebuffer
             glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
             // TODO: (Req 11) Setup the postprocess material and draw the fullscreen triangle
             postprocessMaterial->setup();
+
+            glActiveTexture(GL_TEXTURE1);
+            //ShaderProgram* shader=postprocessMaterial->shader;
+            depthTarget->bind();
+            postprocessMaterial->sampler->bind(1);
+            postprocessMaterial->shader->set("depth_sampler", 1);
+            postprocessMaterial->shader->set("inverse_projection",glm::inverse(camera->getProjectionMatrix(windowSize)));
+
+            postprocessMaterial->shader->set("fog_color", glm::vec3(0.75, 0.5, 0.25));
+            postprocessMaterial->shader->set("fog_power", fog_power);
+            postprocessMaterial->shader->set("fog_exponent", fog_distance);
+            // postprocessMaterial->shader->use();
+            glActiveTexture(GL_TEXTURE0);
+
             glBindVertexArray(postProcessVertexArray);
+            // if (additionalTexture)
+            // {
+            //     glActiveTexture(GL_TEXTURE1);
+            //     additionalTexture->bind();
+            //     postprocessMaterial->sampler->bind(1);
+            //     postprocessMaterial->shader->set("additional_sampler", 1);
+            //     postprocessMaterial->shader->set("effect_power", effect_power); // TODO
+            // }
+
             // Specifies the starting index in the enabled arrays.
             // Specifies the number of indices to be rendered.
             glDrawArrays(GL_TRIANGLES, GLint(0), 4);
