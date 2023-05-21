@@ -6,6 +6,7 @@
 #include <systems/forward-renderer.hpp>
 #include <systems/free-camera-controller.hpp>
 #include <systems/movement.hpp>
+#include <systems/physics.hpp>
 #include <asset-loader.hpp>
 #include <chrono>
 
@@ -17,6 +18,7 @@ class Playstate : public our::State
     our::ForwardRenderer renderer;
     our::FreeCameraControllerSystem cameraController;
     our::MovementSystem movementSystem;
+    our::PhysicsSystem physicsSystem;
     std::chrono::steady_clock::time_point startTime = std::chrono::steady_clock::now();
 
     void onInitialize() override
@@ -43,6 +45,7 @@ class Playstate : public our::State
     void onDraw(double deltaTime) override
     {
         // Here, we just run a bunch of systems to control the world logic
+        physicsSystem.update(&world, (float)deltaTime);
         movementSystem.update(&world, (float)deltaTime);
         cameraController.update(&world, (float)deltaTime);
         // And finally we use the renderer system to draw the scene

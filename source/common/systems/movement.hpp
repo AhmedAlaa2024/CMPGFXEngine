@@ -7,6 +7,7 @@
 #include <glm/gtc/constants.hpp>
 #include <glm/trigonometric.hpp>
 #include <glm/gtx/fast_trigonometry.hpp>
+#include "../components/physics.hpp"
 
 namespace our
 {
@@ -23,11 +24,21 @@ namespace our
             for(auto entity : world->getEntities()){
                 // Get the movement component if it exists
                 MovementComponent* movement = entity->getComponent<MovementComponent>();
+                PhysicsComponent* physics = entity->getComponent<PhysicsComponent>();
+                
                 // If the movement component exists
                 if(movement){
                     // Change the position and rotation based on the linear & angular velocity and delta time.
-                    entity->localTransform.position += deltaTime * movement->linearVelocity;
-                    entity->localTransform.rotation += deltaTime * movement->angularVelocity;
+                    if (!physics) {
+                        entity->localTransform.position += deltaTime * movement->linearVelocity;
+                        entity->localTransform.rotation += deltaTime * movement->angularVelocity;
+                    } else if (physics->isCollided == false) {
+                        entity->localTransform.position += deltaTime * movement->linearVelocity;
+                        entity->localTransform.rotation += deltaTime * movement->angularVelocity;
+                    } else {
+                        std::cout << "Movement: Collision has been detedted" << std::endl;
+                    }
+                    
                 }
             }
         }

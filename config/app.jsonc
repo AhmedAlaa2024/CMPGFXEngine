@@ -353,6 +353,11 @@
                                 "type": "Mesh Renderer",
                                 "mesh": "gun",
                                 "material": "gun"
+                            },
+                            {
+                                "type": "Physics",
+                                "isCollidable": true,
+                                "collisionRestitution": 10.0
                             }
                         ]
                     },
@@ -425,16 +430,16 @@
             {"name":"enemy","position":[55,2,90],"scale":[0.2,0.2,0.2],"rotation": [-90,-64, -90],"components": [{"type": "Mesh Renderer", "mesh": "enemy","material": "enemy_light"},{"type": "Movement","linearVelocity": [0, 0, -0.2]}]},
             //======================================================================building======================================================================//
             //=====================================================================front
-            {"name":"building","position":[-5,3.5,-9],"rotation":[0,90,0],"scale":[0.5,0.5,0.5],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building_light"}]},
-            {"name":"building","position":[-35,3.5,-25],"rotation":[0,90,0],"scale":[0.5,0.5,0.5],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building_light"}]},
-            {"name":"building","position":[35,3.5,-9],"rotation":[0,90,0],"scale":[0.5,0.5,0.5],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building_light"}]},
-            {"name":"building","position":[5,3.5,-45],"rotation":[0,90,0],"scale":[0.5,0.5,0.5],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building_light"}]},
-            {"name":"building","position":[50,3.5,-45],"rotation":[0,90,0],"scale":[0.5,0.5,0.5],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building_light"}]},
+            {"name":"building1 ","position":[-5,3.5,-9],"rotation":[0,90,0],"scale":[0.5,0.5,0.5],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building_light"}, {"type": "Physics", "isCollidable": true, "collisionRestitution": 10.0}]},
+            {"name":"building2","position":[-35,3.5,-25],"rotation":[0,90,0],"scale":[0.5,0.5,0.5],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building_light"}]},
+            {"name":"building3","position":[35,3.5,-9],"rotation":[0,90,0],"scale":[0.5,0.5,0.5],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building_light"}]},
+            {"name":"building4","position":[5,3.5,-45],"rotation":[0,90,0],"scale":[0.5,0.5,0.5],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building_light"}]},
+            {"name":"building5","position":[50,3.5,-45],"rotation":[0,90,0],"scale":[0.5,0.5,0.5],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building_light"}]},
             //=====================================================================back
-            {"name":"building","position":[5,3.5,45],"rotation":[0,90,0],"scale":[0.5,0.5,0.5],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building_light"}]},
-            {"name":"building","position":[-35,3.5,25],"rotation":[0,90,0],"scale":[0.5,0.5,0.5],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building_light"}]},
-            {"name":"building","position":[35,3.5,9],"rotation":[0,90,0],"scale":[0.5,0.5,0.5],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building_light"}]},
-            {"name":"building","position":[50,3.5,45],"rotation":[0,90,0],"scale":[0.5,0.5,0.5],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building_light"}]},
+            {"name":"building6","position":[5,3.5,45],"rotation":[0,90,0],"scale":[0.5,0.5,0.5],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building_light"}]},
+            {"name":"building7","position":[-35,3.5,25],"rotation":[0,90,0],"scale":[0.5,0.5,0.5],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building_light"}]},
+            {"name":"building8","position":[35,3.5,9],"rotation":[0,90,0],"scale":[0.5,0.5,0.5],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building_light"}]},
+            {"name":"building9","position":[50,3.5,45],"rotation":[0,90,0],"scale":[0.5,0.5,0.5],"components":[{"type":"Mesh Renderer","mesh":"building","material":"building_light"}]},
             //=======================================================================================wall=================================================================//
                 //=============================rigth side of the fences===============================//
                 {"name":"wall","position": [155,2,0],"rotation": [0, 90, 0],"scale": [7, 7, 7],"components": [{"type": "Mesh Renderer","mesh": "wall","material": "wall_light"}]},
