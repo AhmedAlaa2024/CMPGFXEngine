@@ -9,7 +9,8 @@
 #include <queue>
 #include <tuple>
 #include <filesystem>
-
+#define MINIAUDIO_IMPLEMENTATION
+#include<miniaudio.h>
 #include <flags/flags.h>
 
 // Include the Dear ImGui implementation headers
@@ -236,6 +237,14 @@ int our::Application::run(int run_for_frames) {
     // The time at which the last frame started. But there was no frames yet, so we'll just pick the current time.
     double last_frame_time = glfwGetTime();
     int current_frame = 0;
+    ma_result result;
+    ma_engine* pEngine = new ma_engine();
+
+    result = ma_engine_init(NULL, pEngine);
+    if (result != MA_SUCCESS) {
+        return -1;  // Failed to initialize the engine.
+    }
+    ma_engine_play_sound(pEngine, "assets/music/almas.mp3",NULL);
 
     //Game loop
     while(!glfwWindowShouldClose(window)){
