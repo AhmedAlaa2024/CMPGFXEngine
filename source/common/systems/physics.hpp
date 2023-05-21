@@ -18,8 +18,6 @@ namespace our
 
     void update(World *world, float deltaTime)
     {
-      std::unordered_set<Entity *> processedEntities;
-
       for (auto collider : world->getEntities())
       {
         MovementComponent *colliderMovement = collider->getComponent<MovementComponent>();
@@ -28,8 +26,8 @@ namespace our
         if (colliderPhysics)
         {
           for (auto collidedEntity : world->getEntities()) {
-            if (collider == collidedEntity || processedEntities.count(collider) || processedEntities.count(collidedEntity))
-              continue;  // Skip already processed entities
+            if (collider == collidedEntity)
+              continue;
             
             MovementComponent *collidedMovement = collider->getComponent<MovementComponent>();
             PhysicsComponent *collidedPhysics = collidedEntity->getComponent<PhysicsComponent>();
@@ -87,10 +85,10 @@ namespace our
               
               // glm::vec3 direction = glm::normalize(colliderLiveCenter - collidedLiveCenter);
 
-              std::cout << "Collision: " << collider->name << " -> " << collidedEntity->name << std::endl;
-              std::cout << "Distance: " << distance << std::endl;
-              std::cout << "Sum of Radius: " << sumOfRadius << std::endl;
-              std::cout << "Scale of Collided Entity: " << scale.x << "," << scale.y << "," << scale.z << std::endl;
+              // std::cout << "Collision: " << collider->name << " -> " << collidedEntity->name << std::endl;
+              // std::cout << "Distance: " << distance << std::endl;
+              // std::cout << "Sum of Radius: " << sumOfRadius << std::endl;
+              // std::cout << "Scale of Collided Entity: " << scale.x << "," << scale.y << "," << scale.z << std::endl;
               if (distance <= sumOfRadius) {
                 if (colliderMovement)
                   collider->localTransform.position -= deltaTime * colliderMovement->linearVelocity;
@@ -167,9 +165,9 @@ namespace our
               }
 
               float distance = glm::distance(colliderCenter, CollidedCenter);
-              std::cout << "Collision: " << collider->name << " -> " << collidedEntity->name << std::endl;
-              std::cout << "Distance: " << distance << std::endl;
-              std::cout << "Sum of max dimensions: " << colliderMaxDim + collidedMaxDim << std::endl;
+              // std::cout << "Collision: " << collider->name << " -> " << collidedEntity->name << std::endl;
+              // std::cout << "Distance: " << distance << std::endl;
+              // std::cout << "Sum of max dimensions: " << colliderMaxDim + collidedMaxDim << std::endl;
 
               // [TODO] Using the previous position of the collider and collided entity to check for collision
               if (distance <= colliderMaxDim + collidedMaxDim) {
@@ -186,13 +184,11 @@ namespace our
                 }
 
                 colliderPhysics->isCollided = true;
+                break;
               } else {
                 colliderPhysics->isCollided = false;
               }
             }
-            // Add the entity pair to the set of processed entities
-            processedEntities.insert(collider);
-            processedEntities.insert(collidedEntity);
           }
         }
       }
