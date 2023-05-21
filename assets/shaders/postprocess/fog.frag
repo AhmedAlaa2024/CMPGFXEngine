@@ -11,7 +11,7 @@ uniform sampler2D depth_sampler;
 uniform mat4 inverse_projection;
 
 // This determines the fog color.
-uniform vec3 fog_color;
+uniform vec3 fog_color = vec3(0.75, 0.5, 0.25);
 // This determines how much the fog affect the scene (0: no fog, 1: background will no longer be visible). Range [0,1]
 uniform float fog_power;
 // The fog exponent is 1/D where D is the distance at which the fog color will dominate 63.2% of the output color. This used to affect the density of the fog.

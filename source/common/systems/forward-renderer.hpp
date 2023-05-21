@@ -65,7 +65,7 @@ namespace our
         void destroy();
         // This function should be called every frame to draw the given world
         void render(World *world);
-
+        // This function is called each 15 secs passed to take decision whether to apply postprocessing effect or not
         void changeApply()
         {
             apply = !apply;
