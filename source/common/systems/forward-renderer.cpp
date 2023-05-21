@@ -150,6 +150,7 @@ namespace our
         CameraComponent *camera = nullptr;
         opaqueCommands.clear();
         transparentCommands.clear();
+        // remove all elements from the lightSources vector and resetting its size to 0, lightSources is a vector of LightComponent pointers
         lightSources.clear();
         for (auto entity : world->getEntities())
         {
@@ -176,7 +177,7 @@ namespace our
                     opaqueCommands.push_back(command);
                 }
             }
-            // if this entity has a light component store it
+            // if this entity has a light component store it in lightSources vector
             if (auto lightComp = entity->getComponent<LightComponent>(); lightComp)
             {
                 lightSources.push_back(lightComp);
@@ -251,33 +252,35 @@ namespace our
         // (computed as the product of the view-projection matrix and the command's local-to-world matrix), and calls the draw() method of the mesh.
         for (const auto &command : opaqueCommands)
         {
-
+            // check if the command.material is of type LitMaterial by using a dynamic_cast
+            // If the cast is successful, the resulting pointer is assigned to light_material, and the code inside the if statement is executed
             if (auto light_material = dynamic_cast<LitMaterial *>(command.material); light_material)
-            {
+            {   // If we get here, the light_material pointer is valid, so we call the setup() function on it
                 light_material->setup();
-
+                // The shader uniforms for the view-projection matrix, local-to-world matrix, eye position, and inverse transpose of the local-to-world matrix are set using the set() function of the shader
                 light_material->shader->set("VP", VP);
                 light_material->shader->set("M", command.localToWorld);
                 light_material->shader->set("eye", command.localToWorld * glm::vec4(0, 0, 0, 1));
                 light_material->shader->set("M_IT", glm::transpose(glm::inverse(command.localToWorld)));
+                // The number of light sources is set as an integer uniform in the shader
                 light_material->shader->set("light_count", (int)lightSources.size());
-
+                // The sky color values are set as vector uniforms in the shader
                 light_material->shader->set("sky.top", glm::vec3(0.7, 0.3, 0.8));
                 light_material->shader->set("sky.horizon", glm::vec3(0.7, 0.3, 0.8));
                 light_material->shader->set("sky.bottom", glm::vec3(0.7, 0.3, 0.8));
-
+                // This is a loop that iterates over all the LightComponent objects in lightSources
                 for (int i = 0; i < (int)lightSources.size(); i++)
                 {
-                    // calculate position and direction of the light source in world
+                    // For each light, the position and direction of the light source in world space are calculated by multiplying the light's local-to-world matrix with the relative direction and position of light to its owner entity
                     glm::vec3 position = lightSources[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, 0, 1);
                     glm::vec3 direction = lightSources[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, -1, 0);
-
+                    // the relevant light properties (type, color, attenuation, etc.) are set as uniform values in the shader using the set() function
                     light_material->shader->set("lights[" + std::to_string(i) + "].type", lightSources[i]->type);
                     light_material->shader->set("lights[" + std::to_string(i) + "].color", lightSources[i]->color);
                     light_material->shader->set("lights[" + std::to_string(i) + "].attenuation", lightSources[i]->attenuation);
 
                     int t = lightSources[i]->type;
-
+                    // The switch statement is used to handle the different types of lights (directional, point, or spotlight) and set the appropriate shader uniforms
                     switch (t)
                     {
                     case 0:
@@ -349,31 +352,32 @@ namespace our
 
             // command.material->setup();
             if (auto light_material = dynamic_cast<LitMaterial *>(command.material); light_material)
-            {
+            {   // If we get here, the light_material pointer is valid, so we call the setup() function on it
                 light_material->setup();
-
+                // The shader uniforms for the view-projection matrix, local-to-world matrix, eye position, and inverse transpose of the local-to-world matrix are set using the set() function of the shader
                 light_material->shader->set("VP", VP);
                 light_material->shader->set("M", command.localToWorld);
                 light_material->shader->set("eye", command.localToWorld * glm::vec4(0, 0, 0, 1));
                 light_material->shader->set("M_IT", glm::transpose(glm::inverse(command.localToWorld)));
+                // The number of light sources is set as an integer uniform in the shader
                 light_material->shader->set("light_count", (int)lightSources.size());
-
+                // // The sky color values are set as vector uniforms in the shader
                 light_material->shader->set("sky.top", glm::vec3(0.0f, 0.1f, 0.5f));
                 light_material->shader->set("sky.horizon", glm::vec3(0.3f, 0.3f, 0.3f));
                 light_material->shader->set("sky.bottom", glm::vec3(0.1f, 0.1f, 0.1f));
-
+                // This is a loop that iterates over all the LightComponent objects in lightSources
                 for (int i = 0; i < (int)lightSources.size(); i++)
                 {
-                    // calculate position and direction of the light source in world
+                    // For each light, the position and direction of the light source in world space are calculated by multiplying the light's local-to-world matrix with the relative direction and position of light to its owner entity
                     glm::vec3 position = lightSources[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, 0, 1);
                     glm::vec3 direction = lightSources[i]->getOwner()->getLocalToWorldMatrix() * glm::vec4(0, 0, -1, 0);
-
+                    // the relevant light properties (type, color, attenuation, etc.) are set as uniform values in the shader using the set() function
                     light_material->shader->set("lights[" + std::to_string(i) + "].type", lightSources[i]->type);
                     light_material->shader->set("lights[" + std::to_string(i) + "].color", lightSources[i]->color);
                     light_material->shader->set("lights[" + std::to_string(i) + "].attenuation", lightSources[i]->attenuation);
 
                     int t = lightSources[i]->type;
-
+                    // The switch statement is used to handle the different types of lights (directional, point, or spotlight) and set the appropriate shader uniforms
                     switch (t)
                     {
                     case 0:
@@ -405,13 +409,13 @@ namespace our
             // TODO: (Req 11) Setup the postprocess material and draw the fullscreen triangle
             postprocessMaterial->setup();
             //////////// FOR FOG///////////////////////////////////////////
+            //Activate texture 1 to bind depth texture 
             glActiveTexture(GL_TEXTURE1);
+            // binds the depth texture to the current texture unit
             depthTarget->bind();
             postprocessMaterial->sampler->bind(1);
             postprocessMaterial->shader->set("depth_sampler", 1);
             postprocessMaterial->shader->set("inverse_projection", glm::inverse(camera->getProjectionMatrix(windowSize)));
-
-            postprocessMaterial->shader->set("fog_color", glm::vec3(0.75, 0.5, 0.25));
             postprocessMaterial->shader->set("fog_power", fog_power);
             postprocessMaterial->shader->set("fog_exponent", fog_distance);
             glActiveTexture(GL_TEXTURE0);

@@ -138,7 +138,7 @@
                     "specular": "white",
                     "roughness": "gray",
                     "emissive": "black",
-                    "ambient_occlusion": "grass",
+                    "ambient_occlusion": "white",
                     "sampler": "default"
                 },
                 "monkey":{
@@ -186,7 +186,7 @@
                     "specular": "white",
                     "roughness": "roughness",
                     "emissive": "black",
-                    "ambient_occlusion": "moon",
+                    "ambient_occlusion": "white",
                     "sampler": "default"
                 },
                 "light":{
@@ -253,7 +253,7 @@
                     "specular": "white",
                     "roughness": "gray",
                     "emissive": "black",
-                    "ambient_occlusion": "enemy",
+                    "ambient_occlusion": "white",
                     "sampler": "default"
                 },
                 "building":{
@@ -286,7 +286,7 @@
                     //"specular": "white",
                     "roughness": "gray",
                     "emissive": "black",
-                    "ambient_occlusion": "building",
+                    "ambient_occlusion": "white",
                     "sampler": "default"
                 },
                 "wall":{
@@ -325,7 +325,7 @@
                     "specular": "white",
                     "roughness": "gray",
                     "emissive": "black",
-                    "ambient_occlusion": "wall",
+                    "ambient_occlusion": "white",
                     "sampler": "default"
                 }
             }

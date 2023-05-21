@@ -57,6 +57,7 @@ class Playstate : public our::State
         // And finally we use the renderer system to draw the scene
         renderer.render(&world);
 
+        // Used to show effect of postprocessing each 15 secs
         std::chrono::steady_clock::time_point endTime = std::chrono::steady_clock::now();
         std::chrono::duration<double> elapsedSeconds = std::chrono::duration_cast<std::chrono::duration<double>>(endTime - startTime);
         if (elapsedSeconds.count() >= 15.0)
