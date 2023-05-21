@@ -22,6 +22,8 @@ namespace our
         GLsizei elementCount;
 
         glm::vec3 center;
+        float width;
+        glm::vec3 xmin, xmax, ymin, ymax, zmin, zmax;
         float radius;
 
     public:
@@ -93,14 +95,14 @@ namespace our
             // Get the max and min vertex positions in x, y, and z
             // Sort all the verteces from the minimum to the maximum according to their x, y, and z coordinates
             // The first element will be the minimum and the last element will be the maximum
-            glm::vec3 xmin = vertices.begin()->position;
-            glm::vec3 xmax = vertices.rbegin()->position;
+            this->xmin = vertices.begin()->position;
+            this->xmax = vertices.rbegin()->position;
 
-            glm::vec3 ymin = vertices.begin()->position;
-            glm::vec3 ymax = vertices.rbegin()->position;
+            this->ymin = vertices.begin()->position;
+            this->ymax = vertices.rbegin()->position;
 
-            glm::vec3 zmin = vertices.begin()->position;
-            glm::vec3 zmax = vertices.rbegin()->position;
+            this->zmin = vertices.begin()->position;
+            this->zmax = vertices.rbegin()->position;
 
             for (const auto &vertex : vertices)
             {
@@ -162,6 +164,37 @@ namespace our
         float getRadius() const
         {
             return this->radius;
+        }
+
+        // this function should return the minimum vertex position in x, y, and z
+        glm::vec3 getXMin() const
+        {
+            return this->xmin;
+        }
+
+        glm::vec3 getXMax() const
+        {
+            return this->xmax;
+        }
+
+        glm::vec3 getYMin() const
+        {
+            return this->ymin;
+        }
+
+        glm::vec3 getYMax() const
+        {
+            return this->ymax;
+        }
+
+        glm::vec3 getZMin() const
+        {
+            return this->zmin;
+        }
+
+        glm::vec3 getZMax() const
+        {
+            return this->zmax;
         }
 
         // this function should delete the vertex & element buffers and the vertex array object
