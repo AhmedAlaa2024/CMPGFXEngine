@@ -14,6 +14,8 @@ namespace our
   class PhysicsSystem
   {
   public:
+    glm::vec3 playerOldPosition = glm::vec3(0.0f, 0.0f, 0.0f);
+
     void update(World *world, float deltaTime)
     {
       std::unordered_set<Entity *> processedEntities;
@@ -28,7 +30,8 @@ namespace our
           for (auto collidedEntity : world->getEntities()) {
             if (collider == collidedEntity || processedEntities.count(collider) || processedEntities.count(collidedEntity))
               continue;  // Skip already processed entities
-
+            
+            MovementComponent *collidedMovement = collider->getComponent<MovementComponent>();
             PhysicsComponent *collidedPhysics = collidedEntity->getComponent<PhysicsComponent>();
 
             if (!collidedPhysics)
@@ -53,10 +56,13 @@ namespace our
             float distance = glm::distance(colliderLiveCenter, collidedLiveCenter);
 
             // Extract the scale from the world transformation matrix
+            glm::mat4 localToWorldMat = collider->getLocalToWorldMatrix();
             glm::vec3 scale;
-            scale.x = glm::length(glm::vec3(collider->getLocalToWorldMatrix()[0][0], collider->getLocalToWorldMatrix()[0][1], collider->getLocalToWorldMatrix()[0][2]));
-            scale.y = glm::length(glm::vec3(collider->getLocalToWorldMatrix()[1][0], collider->getLocalToWorldMatrix()[1][1], collider->getLocalToWorldMatrix()[1][2]));
-            scale.z = glm::length(glm::vec3(collider->getLocalToWorldMatrix()[2][0], collider->getLocalToWorldMatrix()[2][1], collider->getLocalToWorldMatrix()[2][2]));
+            scale.x = glm::length(glm::vec3(localToWorldMat[0][0], localToWorldMat[0][1], localToWorldMat[0][2]));
+            scale.y = glm::length(glm::vec3(localToWorldMat[1][0], localToWorldMat[1][1], localToWorldMat[1][2]));
+            scale.z = glm::length(glm::vec3(localToWorldMat[2][0], localToWorldMat[2][1], localToWorldMat[2][2]));
+
+            std::cout << "Scale of Collider: " << scale.x << "," << scale.y << "," << scale.z << std::endl;
 
             // Find the maximum scale component
             float maxScale = glm::max(scale.x, glm::max(scale.y, scale.z));
@@ -65,10 +71,10 @@ namespace our
             colliderRadius = colliderRadius * maxScale;
 
             // Extract the scale from the world transformation matrix
-            scale;
-            scale.x = glm::length(glm::vec3(collidedEntity->getLocalToWorldMatrix()[0][0], collidedEntity->getLocalToWorldMatrix()[0][1], collidedEntity->getLocalToWorldMatrix()[0][2]));
-            scale.y = glm::length(glm::vec3(collidedEntity->getLocalToWorldMatrix()[1][0], collidedEntity->getLocalToWorldMatrix()[1][1], collidedEntity->getLocalToWorldMatrix()[1][2]));
-            scale.z = glm::length(glm::vec3(collidedEntity->getLocalToWorldMatrix()[2][0], collidedEntity->getLocalToWorldMatrix()[2][1], collidedEntity->getLocalToWorldMatrix()[2][2]));
+            localToWorldMat = collidedEntity->getLocalToWorldMatrix();
+            scale.x = glm::length(glm::vec3(localToWorldMat[0][0], localToWorldMat[0][1], localToWorldMat[0][2]));
+            scale.y = glm::length(glm::vec3(localToWorldMat[1][0], localToWorldMat[1][1], localToWorldMat[1][2]));
+            scale.z = glm::length(glm::vec3(localToWorldMat[2][0], localToWorldMat[2][1], localToWorldMat[2][2]));
 
             // Find the maximum scale component
             maxScale = glm::max(scale.x, glm::max(scale.y, scale.z));
@@ -80,10 +86,23 @@ namespace our
             
             // glm::vec3 direction = glm::normalize(colliderLiveCenter - collidedLiveCenter);
 
-            if (distance <= sumOfRadius) {
               std::cout << "Collision: " << collider->name << " -> " << collidedEntity->name << std::endl;
               std::cout << "Distance: " << distance << std::endl;
               std::cout << "Sum of Radius: " << sumOfRadius << std::endl;
+              std::cout << "Scale of Collided Entity: " << scale.x << "," << scale.y << "," << scale.z << std::endl;
+            if (distance <= sumOfRadius) {
+              if (colliderMovement)
+                collider->localTransform.position -= deltaTime * colliderMovement->linearVelocity;
+              else if (collidedMovement)
+                collidedEntity->localTransform.position -= deltaTime * collidedMovement->linearVelocity;
+              else {
+                if (collider->name == "sword") {
+                  collider->parent->localTransform.position = this->playerOldPosition;
+                } else if (collidedEntity->name == "sword") {
+                  collidedEntity->parent->localTransform.position = this->playerOldPosition;
+                }
+              }
+
               colliderPhysics->isCollided = true;
             } else {
               colliderPhysics->isCollided = false;

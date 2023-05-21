@@ -27,8 +27,6 @@ namespace our {
             component = entity->addComponent<MovementComponent>();
         } else if (type == "Physics") {
             component = entity->addComponent<PhysicsComponent>();
-        } else if (type == "Physics") {
-            component = entity->addComponent<PhysicsComponent>();
         } else if (type == MeshRendererComponent::getID()) {
             // add component of type MeshRendererComponent to the passed entity
             component = entity->addComponent<MeshRendererComponent>();

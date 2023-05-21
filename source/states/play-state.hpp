@@ -40,14 +40,20 @@ class Playstate : public our::State
         // Then we initialize the renderer
         auto size = getApp()->getFrameBufferSize();
         renderer.initialize(size, config["renderer"]);
+
+        for (auto &entity: world.getEntities()) {
+            if (entity->name == "player") {
+                physicsSystem.playerOldPosition = entity->localTransform.position;
+            }
+        }
     }
 
     void onDraw(double deltaTime) override
     {
         // Here, we just run a bunch of systems to control the world logic
+        cameraController.update(&world, (float)deltaTime);
         physicsSystem.update(&world, (float)deltaTime);
         movementSystem.update(&world, (float)deltaTime);
-        cameraController.update(&world, (float)deltaTime);
         // And finally we use the renderer system to draw the scene
         renderer.render(&world);
 
@@ -65,6 +71,12 @@ class Playstate : public our::State
         {
             // If the escape  key is pressed in this frame, go to the play state
             getApp()->changeState("menu");
+        }
+
+        for (auto &entity: world.getEntities()) {
+            if (entity->name == "player") {
+                physicsSystem.playerOldPosition = entity->localTransform.position;
+            }
         }
     }
 
