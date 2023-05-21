@@ -409,13 +409,13 @@ namespace our
             // TODO: (Req 11) Setup the postprocess material and draw the fullscreen triangle
             postprocessMaterial->setup();
             //////////// FOR FOG///////////////////////////////////////////
+            //Activate texture 1 to bind depth texture 
             glActiveTexture(GL_TEXTURE1);
+            // binds the depth texture to the current texture unit
             depthTarget->bind();
             postprocessMaterial->sampler->bind(1);
             postprocessMaterial->shader->set("depth_sampler", 1);
             postprocessMaterial->shader->set("inverse_projection", glm::inverse(camera->getProjectionMatrix(windowSize)));
-
-            postprocessMaterial->shader->set("fog_color", glm::vec3(0.75, 0.5, 0.25));
             postprocessMaterial->shader->set("fog_power", fog_power);
             postprocessMaterial->shader->set("fog_exponent", fog_distance);
             glActiveTexture(GL_TEXTURE0);
