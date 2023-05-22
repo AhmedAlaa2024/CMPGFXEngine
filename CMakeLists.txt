@@ -82,12 +82,15 @@ set(COMMON_SOURCES
         source/common/components/component-deserializer.hpp
         source/common/components/physics.hpp
         source/common/components/physics.cpp
+        source/common/components/game.hpp
+        source/common/components/game.cpp
 
         source/common/systems/forward-renderer.hpp
         source/common/systems/forward-renderer.cpp
         source/common/systems/free-camera-controller.hpp
         source/common/systems/movement.hpp
         source/common/systems/physics.hpp
+        source/common/systems/game.hpp
 )
 
 # Define the directories in which to search for the included headers

@@ -11,6 +11,7 @@ namespace our {
         std::unordered_set<Entity*> markedForRemoval; // These are the entities that are awaiting to be deleted
                                                       // when deleteMarkedEntities is called
     public:
+        bool isGameOver = false; // This is a flag that can be set to true to indicate that the game is over
 
         World() = default;
 

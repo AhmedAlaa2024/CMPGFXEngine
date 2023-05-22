@@ -178,8 +178,16 @@ namespace our
                 else {
                   if (collider->name == "sword") {
                     collider->parent->localTransform.position = this->playerOldPosition;
+                    if (collidedEntity->name == "enemy") {
+                      // end the game
+                      world->isGameOver = true;
+                    }
                   } else if (collidedEntity->name == "sword") {
                     collidedEntity->parent->localTransform.position = this->playerOldPosition;
+                    if (collider->name == "enemy") {
+                      // end the game
+                      world->isGameOver = true;
+                    }
                   }
                 }
 

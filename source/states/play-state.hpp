@@ -79,6 +79,11 @@ class Playstate : public our::State
                 physicsSystem.playerOldPosition = entity->localTransform.position;
             }
         }
+
+        if (world.isGameOver == true) {
+            world.isGameOver = false;
+            getApp()->changeState("victory");
+        }
     }
 
     void onDestroy() override
