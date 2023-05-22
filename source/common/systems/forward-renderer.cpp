@@ -418,7 +418,7 @@ namespace our
             postprocessMaterial->shader->set("inverse_projection", glm::inverse(camera->getProjectionMatrix(windowSize)));
             postprocessMaterial->shader->set("fog_power", fog_power);
             postprocessMaterial->shader->set("fog_exponent", fog_distance);
-            glActiveTexture(GL_TEXTURE0);
+            // glActiveTexture(GL_TEXTURE0);
             //////////// FOR FOG///////////////////////////////////////////
 
             glBindVertexArray(postProcessVertexArray);
